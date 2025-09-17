@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 3D Showroom rotation animation */
+@keyframes rotate3d-showroom {
+  0% {
+    transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+  }
+  25% {
+    transform: perspective(1000px) rotateY(90deg) rotateX(5deg);
+  }
+  50% {
+    transform: perspective(1000px) rotateY(180deg) rotateX(0deg);
+  }
+  75% {
+    transform: perspective(1000px) rotateY(270deg) rotateX(-5deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateY(360deg) rotateX(0deg);
+  }
+}
+
+.animate-3d-showroom {
+  animation: rotate3d-showroom 2s ease-in-out;
+  transform-style: preserve-3d;
+}
+
+/* Continuous sliding animation for categories */
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-slide {
+  animation: slide 30s linear infinite;
+  width: 200%;
+  display: flex;
+  align-items: center;
+}
+
+.animate-slide:hover {
+  animation-play-state: paused;
+}

@@ -15,9 +15,6 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ product, onClose }) => 
     condition: 'Excellent' as 'Excellent' | 'Very Good' | 'Good',
     discount: 0,
     storage: '',
-    color: '',
-    battery: '',
-    status: 'Unlocked' as 'Unlocked' | 'Locked',
     currentPrice: 0,
     originalPrice: 0,
     seller: 'TechGuru UK',
@@ -32,9 +29,6 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ product, onClose }) => 
         condition: product.condition,
         discount: product.discount,
         storage: product.storage || '',
-        color: product.color,
-        battery: product.battery || '',
-        status: product.status || 'Unlocked',
         currentPrice: product.currentPrice,
         originalPrice: product.originalPrice,
         seller: product.seller,
@@ -51,13 +45,10 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ product, onClose }) => 
       image: formData.image,
       condition: formData.condition,
       discount: formData.discount,
-      color: formData.color,
       currentPrice: formData.currentPrice,
       originalPrice: formData.originalPrice,
       seller: formData.seller,
       ...(formData.storage && { storage: formData.storage }),
-      ...(formData.battery && { battery: formData.battery }),
-      ...(formData.status && { status: formData.status }),
       ...(formData.compatible && { compatible: formData.compatible })
     };
 
@@ -154,53 +145,6 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ product, onClose }) => 
           </select>
         </div>
 
-        {/* Color */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Color *
-          </label>
-          <input
-            type="text"
-            name="color"
-            value={formData.color}
-            onChange={handleChange}
-            required
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="e.g., Natural Titanium"
-          />
-        </div>
-
-        {/* Battery */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Battery (Optional)
-          </label>
-          <input
-            type="text"
-            name="battery"
-            value={formData.battery}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="e.g., 98%"
-          />
-        </div>
-
-        {/* Status */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Status (Optional)
-          </label>
-          <select
-            name="status"
-            value={formData.status}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          >
-            <option value="">No Status</option>
-            <option value="Unlocked">Unlocked</option>
-            <option value="Locked">Locked</option>
-          </select>
-        </div>
 
         {/* Compatible */}
         <div>

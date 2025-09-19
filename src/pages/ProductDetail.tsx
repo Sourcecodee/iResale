@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useProducts } from '../context/ProductContext';
 import { Product } from '../components/ProductCard';
+import { getiPhoneImage } from '../utils/iphoneImageMapper';
+import { getWhatsAppUrl } from '../config/whatsappConfig';
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -37,6 +39,19 @@ const ProductDetail: React.FC = () => {
   const handleSpin = () => {
     setIsSpinning(true);
     setTimeout(() => setIsSpinning(false), 1000);
+  };
+
+  const handleWhatsAppContact = () => {
+    const whatsappUrl = getWhatsAppUrl(product.name, formatPrice(product.currentPrice));
+    window.open(whatsappUrl, '_blank');
+  };
+
+  // Get the appropriate image for the product
+  const getProductImage = () => {
+    if (product.name.toLowerCase().includes('iphone')) {
+      return getiPhoneImage(product.name);
+    }
+    return product.image;
   };
 
   if (!product) {
@@ -92,7 +107,7 @@ const ProductDetail: React.FC = () => {
             <div className="bg-white rounded-2xl shadow-lg p-8">
               <div className="relative">
                 <div 
-                  className={`w-full h-96 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl flex items-center justify-center transition-transform duration-1000 ${
+                  className={`w-full h-[500px] bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl flex items-center justify-center transition-transform duration-1000 overflow-hidden ${
                     isSpinning ? 'animate-3d-showroom' : ''
                   }`}
                   style={{ 
@@ -101,17 +116,23 @@ const ProductDetail: React.FC = () => {
                     perspective: '1000px'
                   }}
                 >
-                  <div 
-                    className="w-48 h-48 bg-gradient-to-br from-gray-300 to-gray-400 rounded-xl flex items-center justify-center shadow-2xl"
-                    style={{
-                      transformStyle: 'preserve-3d',
-                      boxShadow: '0 20px 40px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.2)'
+                  <img 
+                    src={getProductImage()} 
+                    alt={product.name}
+                    className="w-full h-full object-contain rounded-xl"
+                    onError={(e) => {
+                      // Fallback to placeholder if image fails to load
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      target.parentElement!.innerHTML = `
+                        <div class="w-48 h-48 bg-gradient-to-br from-gray-300 to-gray-400 rounded-xl flex items-center justify-center shadow-2xl" style="transform-style: preserve-3d; box-shadow: 0 20px 40px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.2)">
+                          <svg class="w-24 h-24 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd" />
+                          </svg>
+                        </div>
+                      `;
                     }}
-                  >
-                    <svg className="w-24 h-24 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
-                    </svg>
-                  </div>
+                  />
                 </div>
                 
                 {/* Condition and Discount Badges */}
@@ -168,21 +189,17 @@ const ProductDetail: React.FC = () => {
                     </div>
                   )}
                   <div className="bg-gray-50 p-4 rounded-lg">
-                    <div className="text-sm text-gray-600">Color</div>
-                    <div className="font-semibold text-gray-900">{product.color}</div>
+                    <div className="text-sm text-gray-600">RAM</div>
+                    <div className="font-semibold text-gray-900">8GB</div>
                   </div>
-                  {product.battery && (
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <div className="text-sm text-gray-600">Battery Health</div>
-                      <div className="font-semibold text-gray-900">{product.battery}</div>
-                    </div>
-                  )}
-                  {product.status && (
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <div className="text-sm text-gray-600">Status</div>
-                      <div className="font-semibold text-gray-900">{product.status}</div>
-                    </div>
-                  )}
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <div className="text-sm text-gray-600">Processor</div>
+                    <div className="font-semibold text-gray-900">A17 Pro</div>
+                  </div>
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <div className="text-sm text-gray-600">Display</div>
+                    <div className="font-semibold text-gray-900">6.1" Super Retina XDR</div>
+                  </div>
                 </div>
 
                 {/* Seller Info */}
@@ -202,7 +219,10 @@ const ProductDetail: React.FC = () => {
 
                 {/* Action Buttons */}
                 <div className="space-y-4">
-                  <button className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-lg text-lg transition-colors">
+                  <button 
+                    onClick={handleWhatsAppContact}
+                    className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-lg text-lg transition-colors"
+                  >
                     📱 Contact Seller on WhatsApp
                   </button>
                   <button className="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-3 px-6 rounded-lg transition-colors">
@@ -214,7 +234,7 @@ const ProductDetail: React.FC = () => {
 
             {/* Product Specifications */}
             <div className="bg-white rounded-2xl shadow-lg p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Product Specifications</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Technical Specifications</h2>
               <div className="space-y-4">
                 <div className="flex justify-between py-3 border-b border-gray-200">
                   <span className="text-gray-600">Product Name</span>
@@ -233,21 +253,25 @@ const ProductDetail: React.FC = () => {
                   </div>
                 )}
                 <div className="flex justify-between py-3 border-b border-gray-200">
-                  <span className="text-gray-600">Color</span>
-                  <span className="font-medium text-gray-900">{product.color}</span>
+                  <span className="text-gray-600">RAM</span>
+                  <span className="font-medium text-gray-900">8GB</span>
                 </div>
-                {product.battery && (
-                  <div className="flex justify-between py-3 border-b border-gray-200">
-                    <span className="text-gray-600">Battery Health</span>
-                    <span className="font-medium text-gray-900">{product.battery}</span>
-                  </div>
-                )}
-                {product.status && (
-                  <div className="flex justify-between py-3 border-b border-gray-200">
-                    <span className="text-gray-600">Lock Status</span>
-                    <span className="font-medium text-gray-900">{product.status}</span>
-                  </div>
-                )}
+                <div className="flex justify-between py-3 border-b border-gray-200">
+                  <span className="text-gray-600">Processor</span>
+                  <span className="font-medium text-gray-900">A17 Pro Chip</span>
+                </div>
+                <div className="flex justify-between py-3 border-b border-gray-200">
+                  <span className="text-gray-600">Display</span>
+                  <span className="font-medium text-gray-900">6.1" Super Retina XDR</span>
+                </div>
+                <div className="flex justify-between py-3 border-b border-gray-200">
+                  <span className="text-gray-600">Camera System</span>
+                  <span className="font-medium text-gray-900">48MP Main + 12MP Ultra Wide</span>
+                </div>
+                <div className="flex justify-between py-3 border-b border-gray-200">
+                  <span className="text-gray-600">Connectivity</span>
+                  <span className="font-medium text-gray-900">5G, Wi-Fi 6E, Bluetooth 5.3</span>
+                </div>
                 {product.compatible && (
                   <div className="flex justify-between py-3 border-b border-gray-200">
                     <span className="text-gray-600">Compatibility</span>

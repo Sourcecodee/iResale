@@ -28,7 +28,7 @@ const CategorySlider: React.FC<CategorySliderProps> = ({ categories, onCategoryC
           enabled: true,
         }}
         autoplay={{
-          delay: 3000,
+          delay: 1500,
           disableOnInteraction: false,
         }}
         loop={true}

@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onHomeClick?: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onHomeClick }) => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-sm">
@@ -10,6 +14,7 @@ const Header: React.FC = () => {
           <div className="flex items-center">
             <Link 
               to="/" 
+              onClick={onHomeClick}
               className="flex items-center hover:scale-105 transition-transform duration-200 cursor-pointer"
               title="Go to Homepage"
             >

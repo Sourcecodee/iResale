@@ -11,6 +11,10 @@ interface SearchFilterProps {
   setSelectedStorage: (storage: string) => void;
   selectedCondition: string;
   setSelectedCondition: (condition: string) => void;
+  selectedConnectivity?: string;
+  setSelectedConnectivity?: (connectivity: string) => void;
+  selectedCaseSize?: string;
+  setSelectedCaseSize?: (caseSize: string) => void;
   isCategoryView?: boolean;
 }
 
@@ -25,8 +29,21 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
   setSelectedStorage,
   selectedCondition,
   setSelectedCondition,
+  selectedConnectivity,
+  setSelectedConnectivity,
+  selectedCaseSize,
+  setSelectedCaseSize,
   isCategoryView = false,
 }) => {
+  const handleResetFilters = () => {
+    setSearchTerm('');
+    setSelectedCategory('All Categories');
+    setSelectedModel('All Models');
+    setSelectedStorage('All Storage');
+    setSelectedCondition('All Conditions');
+    setSelectedConnectivity?.('All Connectivity');
+    setSelectedCaseSize?.('All Case Sizes');
+  };
   return (
     <section className="py-6 bg-white border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,7 +51,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
           <div className="flex-1">
             <input
               type="text"
-              placeholder="Search for iPhone models..."
+              placeholder="Search for products..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -75,6 +92,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
                 )}
                 {selectedCategory === 'Apple Watches' && (
                   <>
+                    <option>Series 10</option>
                     <option>Series 9</option>
                     <option>Series 8</option>
                     <option>SE</option>
@@ -101,17 +119,40 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
                   </>
                 )}
               </select>
-            <select
-              value={selectedStorage}
-              onChange={(e) => setSelectedStorage(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            >
-              <option>All Storage</option>
-              <option>128GB</option>
-              <option>256GB</option>
-              <option>512GB</option>
-              <option>1TB</option>
-            </select>
+            {selectedCategory === 'Apple Watches' ? (
+              <>
+                <select
+                  value={selectedConnectivity || 'All Connectivity'}
+                  onChange={(e) => setSelectedConnectivity?.(e.target.value)}
+                  className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                >
+                  <option>All Connectivity</option>
+                  <option>GPS</option>
+                  <option>GPS + Cellular</option>
+                </select>
+                <select
+                  value={selectedCaseSize || 'All Case Sizes'}
+                  onChange={(e) => setSelectedCaseSize?.(e.target.value)}
+                  className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                >
+                  <option>All Case Sizes</option>
+                  <option>42mm</option>
+                  <option>46mm</option>
+                </select>
+              </>
+            ) : (
+              <select
+                value={selectedStorage}
+                onChange={(e) => setSelectedStorage(e.target.value)}
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option>All Storage</option>
+                <option>128GB</option>
+                <option>256GB</option>
+                <option>512GB</option>
+                <option>1TB</option>
+              </select>
+            )}
             <select
               value={selectedCondition}
               onChange={(e) => setSelectedCondition(e.target.value)}
@@ -122,6 +163,16 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
               <option>Very Good</option>
               <option>Good</option>
             </select>
+            <button
+              onClick={handleResetFilters}
+              className="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg transition-colors duration-200 flex items-center gap-2"
+              title="Clear all filters"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              Clear
+            </button>
           </div>
         </div>
       </div>

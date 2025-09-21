@@ -25,7 +25,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick }) => {
         <img 
           src={category.icon} 
           alt={category.name}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-contain object-center"
         />
         
         {/* Gradient overlay for better text readability */}

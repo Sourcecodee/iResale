@@ -2,7 +2,7 @@ import React from 'react';
 
 const Hero: React.FC = () => {
   return (
-    <section className="pt-48 pb-20 bg-gradient-to-r from-gray-800 to-gray-900 -mt-24">
+    <section className="pt-48 pb-20 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 -mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-4xl font-bold text-white mb-6">
           UK Used iPhones & Accessories

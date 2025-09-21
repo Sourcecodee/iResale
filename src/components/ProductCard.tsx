@@ -65,7 +65,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <img 
               src={getImageSrc()} 
               alt={product.name}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain object-center"
               onError={(e) => {
                 // Fallback to placeholder if image fails to load
                 const target = e.target as HTMLImageElement;

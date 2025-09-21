@@ -4,6 +4,7 @@ import { useProducts } from '../context/ProductContext';
 import { Product } from '../components/ProductCard';
 import { getProductImage } from '../utils/iphoneImageMapper';
 import { getWhatsAppUrl } from '../config/whatsappConfig';
+import Footer from '../components/Footer';
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -317,6 +318,9 @@ const ProductDetail: React.FC = () => {
           </div>
         </div>
       </div>
+      
+      {/* Footer */}
+      <Footer onCategoryClick={() => {}} />
     </div>
   );
 };

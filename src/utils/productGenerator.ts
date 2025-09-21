@@ -1,5 +1,6 @@
 import { Product } from '../components/ProductCard';
 import iphones, { iPhone } from '../data/iPhones';
+import appleWatches, { AppleWatch } from '../data/watch';
 
 // Generate pricing based on iPhone model and storage
 const generatePricing = (iphone: iPhone, storage: string): { currentPrice: number; originalPrice: number; discount: number } => {
@@ -92,6 +93,59 @@ export const generateProductsFromiPhones = (): Product[] => {
       battery: iphone.battery,
       releaseYear: iphone.releaseYear,
       description: iphone.description,
+    });
+  });
+
+  return products;
+};
+
+// Generate pricing for Apple Watches
+const generateWatchPricing = (watch: AppleWatch): { currentPrice: number; originalPrice: number; discount: number } => {
+  // Base prices by watch model (in NGN)
+  const basePrices: { [key: string]: number } = {
+    'Apple Watch Series 8': 320000,
+    'Apple Watch Series 9': 360000,
+    'Apple Watch Series 10': 400000,
+  };
+
+  const basePrice = basePrices[watch.name] || 300000;
+  
+  // Generate discount between 10-20%
+  const discount = Math.floor(Math.random() * 11) + 10;
+  const currentPrice = Math.round(basePrice * (1 - discount / 100));
+
+  return { currentPrice, originalPrice: basePrice, discount };
+};
+
+// Generate products from Apple Watch data
+export const generateProductsFromWatches = (): Product[] => {
+  const products: Product[] = [];
+  let id = 2000; // Start from 2000 to avoid conflicts
+
+  appleWatches.forEach((watch) => {
+    const condition = generateCondition(watch.releaseYear);
+    const pricing = generateWatchPricing(watch);
+    
+    products.push({
+      id: id++,
+      name: `${watch.name} UK Used`,
+      image: watch.image,
+      condition: condition,
+      discount: pricing.discount,
+      storage: watch.storage,
+      currentPrice: pricing.currentPrice,
+      originalPrice: pricing.originalPrice,
+      seller: 'TechGuru UK',
+      category: 'apple-watches',
+      // Add watch-specific properties
+      display: watch.display.size,
+      chip: watch.chip,
+      ram: watch.ram,
+      battery: watch.battery,
+      releaseYear: watch.releaseYear,
+      description: watch.description,
+      // Add sensors as a string for display
+      compatible: watch.sensors.join(', '),
     });
   });
 
@@ -218,46 +272,6 @@ export const generateAdditionalProducts = (): Product[] => {
       category: "airpods"
     },
     
-    // Apple Watches
-    {
-      id: 1010,
-      name: "Apple Watch Series 9 UK Used",
-      image: "/src/assets/others/Watch.jpeg",
-      condition: "Excellent",
-      discount: 12,
-      battery: "96%",
-      status: "Unlocked",
-      currentPrice: 320000,
-      originalPrice: 360000,
-      seller: "TechGuru UK",
-      category: "apple-watches"
-    },
-    {
-      id: 1011,
-      name: "Apple Watch Series 8 UK Used",
-      image: "/src/assets/others/Watch.jpeg",
-      condition: "Very Good",
-      discount: 14,
-      battery: "92%",
-      status: "Unlocked",
-      currentPrice: 280000,
-      originalPrice: 320000,
-      seller: "TechGuru UK",
-      category: "apple-watches"
-    },
-    {
-      id: 1012,
-      name: "Apple Watch SE 2nd Gen UK Used",
-      image: "/src/assets/others/Watch.jpeg",
-      condition: "Good",
-      discount: 16,
-      battery: "88%",
-      status: "Unlocked",
-      currentPrice: 180000,
-      originalPrice: 210000,
-      seller: "TechGuru UK",
-      category: "apple-watches"
-    },
     
     // iPads
     {
@@ -341,6 +355,7 @@ export const generateAdditionalProducts = (): Product[] => {
 // Generate all products
 export const generateAllProducts = (): Product[] => {
   const iphoneProducts = generateProductsFromiPhones();
+  const watchProducts = generateProductsFromWatches();
   const additionalProducts = generateAdditionalProducts();
-  return [...iphoneProducts, ...additionalProducts];
+  return [...iphoneProducts, ...watchProducts, ...additionalProducts];
 };

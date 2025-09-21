@@ -29,28 +29,25 @@ const Home: React.FC = () => {
     if (selectedCategoryId) {
       switch (selectedCategoryId) {
         case 'iphones':
-          matchesCategory = product.name.toLowerCase().includes('iphone');
+          matchesCategory = product.category === 'iphones';
           break;
         case 'apple-watches':
-          matchesCategory = product.name.toLowerCase().includes('watch');
+          matchesCategory = product.category === 'apple-watches';
           break;
         case 'ipads':
-          matchesCategory = product.name.toLowerCase().includes('ipad');
+          matchesCategory = product.category === 'ipads';
           break;
         case 'macbooks':
-          matchesCategory = product.name.toLowerCase().includes('macbook');
+          matchesCategory = product.category === 'macbooks';
           break;
         case 'airpods':
-          matchesCategory = product.name.toLowerCase().includes('airpods');
+          matchesCategory = product.category === 'airpods';
           break;
         case 'chargers':
-          matchesCategory = product.name.toLowerCase().includes('charger') || 
-                           product.name.toLowerCase().includes('adapter') || 
-                           product.name.toLowerCase().includes('cable');
+          matchesCategory = product.category === 'chargers';
           break;
         case 'cases':
-          matchesCategory = product.name.toLowerCase().includes('case') || 
-                           product.name.toLowerCase().includes('protector');
+          matchesCategory = product.category === 'cases';
           break;
         default:
           matchesCategory = true;
@@ -72,6 +69,15 @@ const Home: React.FC = () => {
     setSelectedModel('All Models');
     setSelectedStorage('All Storage');
     setSelectedCondition('All Conditions');
+    
+    // Scroll to the category header when category is selected
+    setTimeout(() => {
+      // Target the category header section
+      const categoryHeader = document.querySelector('section.py-6.bg-white.border-b.border-gray-200');
+      if (categoryHeader) {
+        categoryHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 200);
   };
 
   const handleBackToCategories = () => {
@@ -80,11 +86,19 @@ const Home: React.FC = () => {
     setSelectedModel('All Models');
     setSelectedStorage('All Storage');
     setSelectedCondition('All Conditions');
+    
+    // Scroll to the top of the page content (after header)
+    setTimeout(() => {
+      const pageContent = document.querySelector('.pt-20');
+      if (pageContent) {
+        pageContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
   };
 
   return (
     <div className="min-h-screen bg-white">
-      <Header />
+      <Header onHomeClick={handleBackToCategories} />
       <div className="pt-20">
         <Hero />
 
@@ -93,7 +107,7 @@ const Home: React.FC = () => {
       {!selectedCategoryId ? (
         // Categories View
         <>
-          <section className="py-8 bg-gray-50">
+          <section className="pt-16 pb-2 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold text-gray-900 mb-4">Browse by Category</h2>
@@ -119,23 +133,25 @@ const Home: React.FC = () => {
           <section className="py-6 bg-white border-b border-gray-200">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex items-center justify-between">
-                <div className="flex items-center">
+                <div className="flex-1">
+                  <h2 className="text-2xl font-bold text-gray-900">{currentCategory?.name}</h2>
+                  <p className="text-gray-600">{currentCategory?.description}</p>
+                </div>
+                <div className="flex-1 text-center">
+                  <div className="text-sm text-gray-500">
+                    {filteredProducts.length} products found
+                  </div>
+                </div>
+                <div className="flex-1 flex justify-end">
                   <button
                     onClick={handleBackToCategories}
-                    className="flex items-center text-gray-800 hover:text-black font-medium mr-4"
+                    className="flex items-center text-gray-800 hover:text-black font-medium"
                   >
                     <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                     </svg>
                     Back to Categories
                   </button>
-                  <div>
-                    <h2 className="text-2xl font-bold text-gray-900">{currentCategory?.name}</h2>
-                    <p className="text-gray-600">{currentCategory?.description}</p>
-                  </div>
-                </div>
-                <div className="text-sm text-gray-500">
-                  {filteredProducts.length} products found
                 </div>
               </div>
             </div>
@@ -182,7 +198,7 @@ const Home: React.FC = () => {
         </>
       )}
       </div>
-      <Footer />
+      <Footer onCategoryClick={handleCategoryClick} />
     </div>
   );
 };

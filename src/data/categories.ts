@@ -12,9 +12,9 @@ export const categories: Category[] = [
   {
     id: 'apple-watches',
     name: 'Apple Watches',
-    icon: '/src/assets/others/Watch.jpeg',
-    description: 'Apple Watch Series 9, 8, and SE models with various bands',
-    productCount: 3,
+    icon: '/src/assets/Watch/series10/Apple-Watch-Series-10.jpeg',
+    description: 'Apple Watch Series 10, 9, 8, and SE models with various bands',
+    productCount: 7,
     color: 'bg-gradient-to-br from-gray-600 to-gray-700'
   },
   {

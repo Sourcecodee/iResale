@@ -1,3 +1,26 @@
+// Apple Watch model to image mapping
+export const getAppleWatchImage = (productName: string): string => {
+  const name = productName.toLowerCase();
+  
+  // Apple Watch Series 10
+  if (name.includes('series 10')) {
+    return '/src/assets/Watch/series10/Apple-Watch-Series-10.jpeg';
+  }
+  
+  // Apple Watch Series 9
+  if (name.includes('series 9')) {
+    return '/src/assets/Watch/series9/Apple-Watch-Series-9.jpeg';
+  }
+  
+  // Apple Watch Series 8
+  if (name.includes('series 8')) {
+    return '/src/assets/Watch/series8/Apple-Watch-Series-8.jpeg';
+  }
+  
+  // Default fallback for watches
+  return '/src/assets/others/Watch.jpeg';
+};
+
 // iPhone model to image mapping
 export const getiPhoneImage = (productName: string): string => {
   const name = productName.toLowerCase();
@@ -83,7 +106,7 @@ export const getiPhoneImage = (productName: string): string => {
   return '/src/assets/others/iPhone.jpeg';
 };
 
-// Enhanced function to get iPhone image with fallback
+// Enhanced function to get product image with fallback
 export const getProductImage = (product: any): string => {
   // If product already has an image path, use it
   if (product.image && product.image !== '/api/placeholder/300/300') {
@@ -93,6 +116,11 @@ export const getProductImage = (product: any): string => {
   // If it's an iPhone, use the iPhone image mapper
   if (product.name && product.name.toLowerCase().includes('iphone')) {
     return getiPhoneImage(product.name);
+  }
+  
+  // If it's an Apple Watch, use the Apple Watch image mapper
+  if (product.name && product.name.toLowerCase().includes('apple watch')) {
+    return getAppleWatchImage(product.name);
   }
   
   // Default fallback

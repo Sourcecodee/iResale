@@ -30,7 +30,7 @@ const ProductDetail: React.FC = () => {
   const getConditionColor = (condition: string) => {
     switch (condition) {
       case 'Excellent': return 'bg-green-100 text-green-800 border-green-200';
-      case 'Very Good': return 'bg-teal-100 text-teal-800 border-teal-200';
+      case 'Very Good': return 'bg-gray-100 text-gray-800 border-gray-200';
       case 'Good': return 'bg-yellow-100 text-yellow-800 border-yellow-200';
       default: return 'bg-gray-100 text-gray-800 border-gray-200';
     }
@@ -43,7 +43,12 @@ const ProductDetail: React.FC = () => {
 
   const handleWhatsAppContact = () => {
     if (product) {
-      const whatsappUrl = getWhatsAppUrl(product.name, formatPrice(product.currentPrice));
+      const whatsappUrl = getWhatsAppUrl(
+        product.name, 
+        formatPrice(product.currentPrice),
+        product.ram,
+        product.storage
+      );
       window.open(whatsappUrl, '_blank');
     }
   };
@@ -65,7 +70,7 @@ const ProductDetail: React.FC = () => {
           <p className="text-gray-600 mb-4">The product you're looking for doesn't exist.</p>
           <Link 
             to="/" 
-            className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
+            className="bg-gradient-to-r from-gray-800 to-black hover:from-black hover:to-gray-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
           >
             Back to Store
           </Link>
@@ -82,18 +87,18 @@ const ProductDetail: React.FC = () => {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
               <Link to="/" className="flex items-center">
-                <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center mr-3 shadow-lg">
-                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 2L3 7v11a1 1 0 001 1h12a1 1 0 001-1V7l-7-5zM8 15v-3a2 2 0 114 0v3H8z" clipRule="evenodd" />
+                <div className="w-8 h-8 bg-gradient-to-br from-gray-800 to-black rounded-lg flex items-center justify-center mr-3 shadow-lg">
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
                   </svg>
                 </div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">iMint</h1>
+                <h1 className="text-2xl brand-font bg-gradient-to-r from-gray-800 to-black bg-clip-text text-transparent">iMint</h1>
               </Link>
             </div>
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => navigate(-1)}
-                className="text-emerald-600 hover:text-emerald-800 font-medium"
+                className="text-gray-800 hover:text-black font-medium"
               >
                 ← Back
               </button>
@@ -153,7 +158,7 @@ const ProductDetail: React.FC = () => {
               <div className="mt-6 text-center">
                 <button
                   onClick={handleSpin}
-                  className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
+                  className="bg-gradient-to-r from-gray-800 to-black hover:from-black hover:to-gray-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
                 >
                   🎯 3D Showroom View
                 </button>
@@ -211,9 +216,9 @@ const ProductDetail: React.FC = () => {
                 </div>
 
                 {/* Seller Info */}
-                <div className="bg-emerald-50 p-4 rounded-lg mb-6">
+                <div className="bg-gray-50 p-4 rounded-lg mb-6">
                   <div className="flex items-center">
-                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center mr-3 shadow-lg">
+                  <div className="w-10 h-10 bg-gradient-to-br from-gray-800 to-black rounded-full flex items-center justify-center mr-3 shadow-lg">
                     <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                     </svg>
@@ -229,12 +234,9 @@ const ProductDetail: React.FC = () => {
                 <div className="space-y-4">
                   <button 
                     onClick={handleWhatsAppContact}
-                    className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-lg text-lg transition-colors"
+                    className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-lg text-lg transition-colors shadow-lg hover:shadow-xl"
                   >
                     📱 Contact Seller on WhatsApp
-                  </button>
-                  <button className="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-3 px-6 rounded-lg transition-colors">
-                    ❤️ Add to Wishlist
                   </button>
                 </div>
               </div>

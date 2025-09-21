@@ -17,17 +17,17 @@ const Admin: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
-              <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center mr-3 shadow-lg">
+              <div className="w-8 h-8 bg-gradient-to-br from-gray-800 to-black rounded-lg flex items-center justify-center mr-3 shadow-lg">
                 <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 2L3 7v11a1 1 0 001 1h12a1 1 0 001-1V7l-7-5zM8 15v-3a2 2 0 114 0v3H8z" clipRule="evenodd" />
                 </svg>
               </div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">iMint Admin</h1>
+              <h1 className="text-2xl brand-font bg-gradient-to-r from-gray-800 to-black bg-clip-text text-transparent">iMint Admin</h1>
             </div>
             <div className="flex items-center space-x-4">
               <Link 
                 to="/" 
-                className="text-emerald-600 hover:text-emerald-800 font-medium"
+                className="text-gray-800 hover:text-black font-medium"
               >
                 ← Back to Store
               </Link>
@@ -46,7 +46,7 @@ const Admin: React.FC = () => {
             </div>
             <button
               onClick={() => setShowAddForm(true)}
-              className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
+              className="bg-gradient-to-r from-gray-800 to-black hover:from-black hover:to-gray-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
             >
               + Add New Product
             </button>
@@ -54,8 +54,8 @@ const Admin: React.FC = () => {
 
           {/* Stats */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-emerald-50 p-4 rounded-lg">
-              <div className="text-2xl font-bold text-emerald-600">{products.length}</div>
+            <div className="bg-gray-50 p-4 rounded-lg">
+              <div className="text-2xl font-bold text-gray-800">{products.length}</div>
               <div className="text-sm text-gray-600">Total Products</div>
             </div>
             <div className="bg-green-50 p-4 rounded-lg">

@@ -83,6 +83,7 @@ export const generateProductsFromiPhones = (): Product[] => {
       currentPrice: pricing.currentPrice,
       originalPrice: pricing.originalPrice,
       seller: 'TechGuru UK',
+      category: 'iphones', // All iPhone products belong to iphones category
       // Add iPhone-specific properties
       display: iphone.display,
       chip: iphone.chip,
@@ -110,7 +111,8 @@ export const generateAdditionalProducts = (): Product[] => {
       compatible: "iPhone 17 Pro",
       currentPrice: 35000,
       originalPrice: 40000,
-      seller: "TechGuru UK"
+      seller: "TechGuru UK",
+      category: "cases"
     },
     {
       id: 1002,
@@ -121,7 +123,8 @@ export const generateAdditionalProducts = (): Product[] => {
       compatible: "iPhone 16 Pro",
       currentPrice: 28000,
       originalPrice: 32000,
-      seller: "TechGuru UK"
+      seller: "TechGuru UK",
+      category: "cases"
     },
     {
       id: 1003,
@@ -132,7 +135,8 @@ export const generateAdditionalProducts = (): Product[] => {
       compatible: "iPhone 15 series and later",
       currentPrice: 12000,
       originalPrice: 15000,
-      seller: "TechGuru UK"
+      seller: "TechGuru UK",
+      category: "cases"
     },
     
     // Chargers
@@ -145,7 +149,8 @@ export const generateAdditionalProducts = (): Product[] => {
       compatible: "iPhone 12 and later",
       currentPrice: 35000,
       originalPrice: 40000,
-      seller: "TechGuru UK"
+      seller: "TechGuru UK",
+      category: "chargers"
     },
     {
       id: 1005,
@@ -156,7 +161,8 @@ export const generateAdditionalProducts = (): Product[] => {
       compatible: "iPhone 15 series",
       currentPrice: 15000,
       originalPrice: 18000,
-      seller: "TechGuru UK"
+      seller: "TechGuru UK",
+      category: "chargers"
     },
     {
       id: 1006,
@@ -167,7 +173,8 @@ export const generateAdditionalProducts = (): Product[] => {
       compatible: "iPhone 12 and later",
       currentPrice: 22000,
       originalPrice: 25000,
-      seller: "TechGuru UK"
+      seller: "TechGuru UK",
+      category: "chargers"
     },
     
     // AirPods
@@ -181,7 +188,8 @@ export const generateAdditionalProducts = (): Product[] => {
       compatible: "iPhone",
       currentPrice: 180000,
       originalPrice: 220000,
-      seller: "TechGuru UK"
+      seller: "TechGuru UK",
+      category: "airpods"
     },
     {
       id: 1008,
@@ -193,7 +201,8 @@ export const generateAdditionalProducts = (): Product[] => {
       compatible: "iPhone",
       currentPrice: 120000,
       originalPrice: 150000,
-      seller: "TechGuru UK"
+      seller: "TechGuru UK",
+      category: "airpods"
     },
     {
       id: 1009,
@@ -205,7 +214,8 @@ export const generateAdditionalProducts = (): Product[] => {
       compatible: "iPhone",
       currentPrice: 280000,
       originalPrice: 320000,
-      seller: "TechGuru UK"
+      seller: "TechGuru UK",
+      category: "airpods"
     },
     
     // Apple Watches
@@ -219,7 +229,8 @@ export const generateAdditionalProducts = (): Product[] => {
       status: "Unlocked",
       currentPrice: 320000,
       originalPrice: 360000,
-      seller: "TechGuru UK"
+      seller: "TechGuru UK",
+      category: "apple-watches"
     },
     {
       id: 1011,
@@ -231,7 +242,8 @@ export const generateAdditionalProducts = (): Product[] => {
       status: "Unlocked",
       currentPrice: 280000,
       originalPrice: 320000,
-      seller: "TechGuru UK"
+      seller: "TechGuru UK",
+      category: "apple-watches"
     },
     {
       id: 1012,
@@ -243,7 +255,8 @@ export const generateAdditionalProducts = (): Product[] => {
       status: "Unlocked",
       currentPrice: 180000,
       originalPrice: 210000,
-      seller: "TechGuru UK"
+      seller: "TechGuru UK",
+      category: "apple-watches"
     },
     
     // iPads
@@ -258,7 +271,8 @@ export const generateAdditionalProducts = (): Product[] => {
       status: "Unlocked",
       currentPrice: 650000,
       originalPrice: 720000,
-      seller: "TechGuru UK"
+      seller: "TechGuru UK",
+      category: "ipads"
     },
     {
       id: 1014,
@@ -271,7 +285,8 @@ export const generateAdditionalProducts = (): Product[] => {
       status: "Unlocked",
       currentPrice: 420000,
       originalPrice: 480000,
-      seller: "TechGuru UK"
+      seller: "TechGuru UK",
+      category: "ipads"
     },
     {
       id: 1015,
@@ -285,7 +300,8 @@ export const generateAdditionalProducts = (): Product[] => {
       status: "Unlocked",
       currentPrice: 280000,
       originalPrice: 320000,
-      seller: "TechGuru UK"
+      seller: "TechGuru UK",
+      category: "ipads"
     },
     
     // MacBooks
@@ -300,7 +316,8 @@ export const generateAdditionalProducts = (): Product[] => {
       status: "Unlocked",
       currentPrice: 850000,
       originalPrice: 920000,
-      seller: "TechGuru UK"
+      seller: "TechGuru UK",
+      category: "macbooks"
     },
     {
       id: 1017,
@@ -313,7 +330,8 @@ export const generateAdditionalProducts = (): Product[] => {
       status: "Unlocked",
       currentPrice: 1200000,
       originalPrice: 1350000,
-      seller: "TechGuru UK"
+      seller: "TechGuru UK",
+      category: "macbooks"
     }
   ];
 

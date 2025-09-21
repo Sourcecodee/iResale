@@ -13,6 +13,7 @@ export interface Product {
   originalPrice: number;
   seller: string;
   compatible?: string;
+  category: string; // Required category field
   // iPhone-specific properties
   display?: string;
   chip?: string;
@@ -45,7 +46,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const getConditionColor = (condition: string) => {
     switch (condition) {
       case 'Excellent': return 'bg-green-500';
-      case 'Very Good': return 'bg-teal-500';
+      case 'Very Good': return 'bg-gray-500';
       case 'Good': return 'bg-yellow-500';
       default: return 'bg-gray-500';
     }
@@ -88,7 +89,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
         
         <div className="p-4">
-          <h4 className="font-semibold text-gray-900 mb-2 hover:text-emerald-600 transition-colors">{product.name}</h4>
+          <h4 className="font-semibold text-gray-900 mb-2 hover:text-gray-800 transition-colors">{product.name}</h4>
           
           <div className="space-y-1 text-sm text-gray-600 mb-3">
             {product.storage && <div>Storage: {product.storage}</div>}
@@ -111,7 +112,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
           
           <div className="text-center">
-            <span className="inline-block bg-emerald-100 text-emerald-800 text-sm font-medium px-3 py-1 rounded-full">
+            <span className="inline-block bg-gray-100 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">
               👆 Click to View Details
             </span>
           </div>

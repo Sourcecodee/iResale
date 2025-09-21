@@ -112,12 +112,12 @@ const ProductDetail: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12">
           {/* Product Image Section */}
           <div className="space-y-4 sm:space-y-5 lg:space-y-6">
-            <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-7 lg:p-8">
+            <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
               <div className="relative">
                 <div 
-                  className={`w-full h-[500px] bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl flex items-center justify-center transition-transform duration-1000 overflow-hidden ${
+                  className={`w-full bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl flex items-center justify-center transition-transform duration-1000 overflow-hidden ${
                     isSpinning ? 'animate-3d-showroom' : ''
-                  }`}
+                  } ${isSpinning ? 'h-[300px] sm:h-[400px] lg:h-[500px]' : 'h-[300px] sm:h-[400px] lg:h-[500px]'}`}
                   style={{ 
                     transformOrigin: 'center center',
                     transformStyle: 'preserve-3d',
@@ -156,10 +156,10 @@ const ProductDetail: React.FC = () => {
                 </div>
               </div>
               
-              <div className="mt-6 text-center">
+              <div className="mt-4 sm:mt-6 text-center">
                 <button
                   onClick={handleSpin}
-                  className="bg-gradient-to-r from-gray-800 to-black hover:from-black hover:to-gray-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
+                  className="bg-gradient-to-r from-gray-800 to-black hover:from-black hover:to-gray-700 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-sm sm:text-base font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
                 >
                   🎯 3D Showroom View
                 </button>
@@ -168,18 +168,18 @@ const ProductDetail: React.FC = () => {
           </div>
 
           {/* Product Details Section */}
-          <div className="space-y-6">
-            <div className="bg-white rounded-2xl shadow-lg p-8">
-              <div className="mb-6">
-                <h1 className="text-3xl font-bold text-gray-900 mb-4">{product.name}</h1>
+          <div className="space-y-4 sm:space-y-6">
+            <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
+              <div className="mb-4 sm:mb-6">
+                <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">{product.name}</h1>
                 
                 {/* Price Section */}
-                <div className="mb-6">
-                  <div className="flex items-baseline space-x-3">
-                    <span className="text-4xl font-bold text-gray-900">
+                <div className="mb-4 sm:mb-6">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline sm:space-x-3 space-y-1 sm:space-y-0">
+                    <span className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
                       {formatPrice(product.currentPrice)}
                     </span>
-                    <span className="text-xl text-gray-500 line-through">
+                    <span className="text-lg sm:text-xl text-gray-500 line-through">
                       {formatPrice(product.originalPrice)}
                     </span>
                   </div>
@@ -189,53 +189,53 @@ const ProductDetail: React.FC = () => {
                 </div>
 
                 {/* Key Features */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
                   {product.storage && (
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <div className="text-sm text-gray-600">Storage</div>
-                      <div className="font-semibold text-gray-900">{product.storage}</div>
+                    <div className="bg-gray-50 p-3 sm:p-4 rounded-lg">
+                      <div className="text-xs sm:text-sm text-gray-600">Storage</div>
+                      <div className="font-semibold text-sm sm:text-base text-gray-900">{product.storage}</div>
                     </div>
                   )}
                   {product.ram && (
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <div className="text-sm text-gray-600">RAM</div>
-                      <div className="font-semibold text-gray-900">{product.ram}</div>
+                    <div className="bg-gray-50 p-3 sm:p-4 rounded-lg">
+                      <div className="text-xs sm:text-sm text-gray-600">RAM</div>
+                      <div className="font-semibold text-sm sm:text-base text-gray-900">{product.ram}</div>
                     </div>
                   )}
                   {product.chip && (
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <div className="text-sm text-gray-600">Processor</div>
-                      <div className="font-semibold text-gray-900">{product.chip}</div>
+                    <div className="bg-gray-50 p-3 sm:p-4 rounded-lg">
+                      <div className="text-xs sm:text-sm text-gray-600">Processor</div>
+                      <div className="font-semibold text-sm sm:text-base text-gray-900">{product.chip}</div>
                     </div>
                   )}
                   {product.display && (
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <div className="text-sm text-gray-600">Display</div>
-                      <div className="font-semibold text-gray-900">{product.display}</div>
+                    <div className="bg-gray-50 p-3 sm:p-4 rounded-lg">
+                      <div className="text-xs sm:text-sm text-gray-600">Display</div>
+                      <div className="font-semibold text-sm sm:text-base text-gray-900">{product.display}</div>
                     </div>
                   )}
                 </div>
 
                 {/* Seller Info */}
-                <div className="bg-gray-50 p-4 rounded-lg mb-6">
+                <div className="bg-gray-50 p-3 sm:p-4 rounded-lg mb-4 sm:mb-6">
                   <div className="flex items-center">
-                  <div className="w-10 h-10 bg-gradient-to-br from-gray-800 to-black rounded-full flex items-center justify-center mr-3 shadow-lg">
-                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-gray-800 to-black rounded-full flex items-center justify-center mr-3 shadow-lg">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                     </svg>
                   </div>
                     <div>
-                      <div className="font-medium text-gray-900">Sold by {product.seller}</div>
-                      <div className="text-sm text-gray-600">Verified UK Seller</div>
+                      <div className="font-medium text-sm sm:text-base text-gray-900">Sold by {product.seller}</div>
+                      <div className="text-xs sm:text-sm text-gray-600">Verified UK Seller</div>
                     </div>
                   </div>
                 </div>
 
                 {/* Action Buttons */}
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <button 
                     onClick={handleWhatsAppContact}
-                    className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-lg text-lg transition-colors shadow-lg hover:shadow-xl"
+                    className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 sm:py-4 px-4 sm:px-6 rounded-lg text-base sm:text-lg transition-colors shadow-lg hover:shadow-xl"
                   >
                     📱 Contact Seller on WhatsApp
                   </button>
@@ -244,74 +244,74 @@ const ProductDetail: React.FC = () => {
             </div>
 
             {/* Product Specifications */}
-            <div className="bg-white rounded-2xl shadow-lg p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Technical Specifications</h2>
-              <div className="space-y-4">
-                <div className="flex justify-between py-3 border-b border-gray-200">
-                  <span className="text-gray-600">Product Name</span>
-                  <span className="font-medium text-gray-900">{product.name}</span>
+            <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Technical Specifications</h2>
+              <div className="space-y-3 sm:space-y-4">
+                <div className="flex flex-col sm:flex-row sm:justify-between py-2 sm:py-3 border-b border-gray-200">
+                  <span className="text-sm sm:text-base text-gray-600 mb-1 sm:mb-0">Product Name</span>
+                  <span className="font-medium text-sm sm:text-base text-gray-900">{product.name}</span>
                 </div>
-                <div className="flex justify-between py-3 border-b border-gray-200">
-                  <span className="text-gray-600">Condition</span>
-                  <span className={`px-2 py-1 rounded text-sm font-medium ${getConditionColor(product.condition)}`}>
+                <div className="flex flex-col sm:flex-row sm:justify-between py-2 sm:py-3 border-b border-gray-200">
+                  <span className="text-sm sm:text-base text-gray-600 mb-1 sm:mb-0">Condition</span>
+                  <span className={`px-2 py-1 rounded text-xs sm:text-sm font-medium ${getConditionColor(product.condition)}`}>
                     {product.condition}
                   </span>
                 </div>
                 {product.storage && (
-                  <div className="flex justify-between py-3 border-b border-gray-200">
-                    <span className="text-gray-600">Storage Capacity</span>
-                    <span className="font-medium text-gray-900">{product.storage}</span>
+                  <div className="flex flex-col sm:flex-row sm:justify-between py-2 sm:py-3 border-b border-gray-200">
+                    <span className="text-sm sm:text-base text-gray-600 mb-1 sm:mb-0">Storage Capacity</span>
+                    <span className="font-medium text-sm sm:text-base text-gray-900">{product.storage}</span>
                   </div>
                 )}
                 {product.ram && (
-                  <div className="flex justify-between py-3 border-b border-gray-200">
-                    <span className="text-gray-600">RAM</span>
-                    <span className="font-medium text-gray-900">{product.ram}</span>
+                  <div className="flex flex-col sm:flex-row sm:justify-between py-2 sm:py-3 border-b border-gray-200">
+                    <span className="text-sm sm:text-base text-gray-600 mb-1 sm:mb-0">RAM</span>
+                    <span className="font-medium text-sm sm:text-base text-gray-900">{product.ram}</span>
                   </div>
                 )}
                 {product.chip && (
-                  <div className="flex justify-between py-3 border-b border-gray-200">
-                    <span className="text-gray-600">Processor</span>
-                    <span className="font-medium text-gray-900">{product.chip}</span>
+                  <div className="flex flex-col sm:flex-row sm:justify-between py-2 sm:py-3 border-b border-gray-200">
+                    <span className="text-sm sm:text-base text-gray-600 mb-1 sm:mb-0">Processor</span>
+                    <span className="font-medium text-sm sm:text-base text-gray-900">{product.chip}</span>
                   </div>
                 )}
                 {product.display && (
-                  <div className="flex justify-between py-3 border-b border-gray-200">
-                    <span className="text-gray-600">Display</span>
-                    <span className="font-medium text-gray-900">{product.display}</span>
+                  <div className="flex flex-col sm:flex-row sm:justify-between py-2 sm:py-3 border-b border-gray-200">
+                    <span className="text-sm sm:text-base text-gray-600 mb-1 sm:mb-0">Display</span>
+                    <span className="font-medium text-sm sm:text-base text-gray-900">{product.display}</span>
                   </div>
                 )}
                 {product.cameras && (
-                  <div className="flex justify-between py-3 border-b border-gray-200">
-                    <span className="text-gray-600">Camera System</span>
-                    <span className="font-medium text-gray-900">{product.cameras.rear}</span>
+                  <div className="flex flex-col sm:flex-row sm:justify-between py-2 sm:py-3 border-b border-gray-200">
+                    <span className="text-sm sm:text-base text-gray-600 mb-1 sm:mb-0">Camera System</span>
+                    <span className="font-medium text-sm sm:text-base text-gray-900">{product.cameras.rear}</span>
                   </div>
                 )}
                 {product.battery && (
-                  <div className="flex justify-between py-3 border-b border-gray-200">
-                    <span className="text-gray-600">Battery</span>
-                    <span className="font-medium text-gray-900">{product.battery}</span>
+                  <div className="flex flex-col sm:flex-row sm:justify-between py-2 sm:py-3 border-b border-gray-200">
+                    <span className="text-sm sm:text-base text-gray-600 mb-1 sm:mb-0">Battery</span>
+                    <span className="font-medium text-sm sm:text-base text-gray-900">{product.battery}</span>
                   </div>
                 )}
                 {product.releaseYear && (
-                  <div className="flex justify-between py-3 border-b border-gray-200">
-                    <span className="text-gray-600">Release Year</span>
-                    <span className="font-medium text-gray-900">{product.releaseYear}</span>
+                  <div className="flex flex-col sm:flex-row sm:justify-between py-2 sm:py-3 border-b border-gray-200">
+                    <span className="text-sm sm:text-base text-gray-600 mb-1 sm:mb-0">Release Year</span>
+                    <span className="font-medium text-sm sm:text-base text-gray-900">{product.releaseYear}</span>
                   </div>
                 )}
                 {product.compatible && (
-                  <div className="flex justify-between py-3 border-b border-gray-200">
-                    <span className="text-gray-600">Compatibility</span>
-                    <span className="font-medium text-gray-900">{product.compatible}</span>
+                  <div className="flex flex-col sm:flex-row sm:justify-between py-2 sm:py-3 border-b border-gray-200">
+                    <span className="text-sm sm:text-base text-gray-600 mb-1 sm:mb-0">Compatibility</span>
+                    <span className="font-medium text-sm sm:text-base text-gray-900">{product.compatible}</span>
                   </div>
                 )}
-                <div className="flex justify-between py-3 border-b border-gray-200">
-                  <span className="text-gray-600">Seller</span>
-                  <span className="font-medium text-gray-900">{product.seller}</span>
+                <div className="flex flex-col sm:flex-row sm:justify-between py-2 sm:py-3 border-b border-gray-200">
+                  <span className="text-sm sm:text-base text-gray-600 mb-1 sm:mb-0">Seller</span>
+                  <span className="font-medium text-sm sm:text-base text-gray-900">{product.seller}</span>
                 </div>
-                <div className="flex justify-between py-3">
-                  <span className="text-gray-600">Discount</span>
-                  <span className="font-medium text-red-600">{product.discount}% OFF</span>
+                <div className="flex flex-col sm:flex-row sm:justify-between py-2 sm:py-3">
+                  <span className="text-sm sm:text-base text-gray-600 mb-1 sm:mb-0">Discount</span>
+                  <span className="font-medium text-sm sm:text-base text-red-600">{product.discount}% OFF</span>
                 </div>
               </div>
             </div>

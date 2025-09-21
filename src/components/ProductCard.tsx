@@ -32,9 +32,10 @@ export interface Product {
 
 interface ProductCardProps {
   product: Product;
+  isCategoryView?: boolean;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, isCategoryView = false }) => {
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-NG', {
       style: 'currency',
@@ -59,9 +60,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <Link to={`/product/${product.id}`} className="block">
-      <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer">
+      <div className={`bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer ${isCategoryView ? 'sm:shadow-md' : ''}`}>
         <div className="relative">
-          <div className="w-full h-64 bg-gray-200 flex items-center justify-center overflow-hidden">
+          <div className={`w-full bg-gray-200 flex items-center justify-center overflow-hidden ${isCategoryView ? 'h-48 sm:h-56 md:h-64' : 'h-64'}`}>
             <img 
               src={getImageSrc()} 
               alt={product.name}
@@ -88,32 +89,43 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
         </div>
         
-        <div className="p-4">
-          <h4 className="font-semibold text-gray-900 mb-2 hover:text-gray-800 transition-colors">{product.name}</h4>
+        <div className={`${isCategoryView ? 'p-2 sm:p-3 md:p-4' : 'p-4'}`}>
+          <h4 className={`font-semibold text-gray-900 hover:text-gray-800 transition-colors ${isCategoryView ? 'text-sm sm:text-base mb-1 sm:mb-2' : 'mb-2'}`}>{product.name}</h4>
           
-          <div className="space-y-1 text-sm text-gray-600 mb-3">
-            {product.storage && <div>Storage: {product.storage}</div>}
-            {product.ram && <div>RAM: {product.ram}</div>}
-            {product.chip && <div>Processor: {product.chip}</div>}
-            {product.compatible && <div>Compatible: {product.compatible}</div>}
-          </div>
+          {isCategoryView ? (
+            // Simplified view for category - show only one key feature
+            <div className="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3">
+              {product.storage && <div>Storage: {product.storage}</div>}
+              {!product.storage && product.ram && <div>RAM: {product.ram}</div>}
+              {!product.storage && !product.ram && product.chip && <div>Processor: {product.chip}</div>}
+              {!product.storage && !product.ram && !product.chip && product.compatible && <div>Compatible: {product.compatible}</div>}
+            </div>
+          ) : (
+            // Full view for other contexts
+            <div className="space-y-1 text-sm text-gray-600 mb-3">
+              {product.storage && <div>Storage: {product.storage}</div>}
+              {product.ram && <div>RAM: {product.ram}</div>}
+              {product.chip && <div>Processor: {product.chip}</div>}
+              {product.compatible && <div>Compatible: {product.compatible}</div>}
+            </div>
+          )}
           
-          <div className="mb-3">
-            <div className="text-lg font-bold text-gray-900">
+          <div className={`${isCategoryView ? 'mb-2 sm:mb-3' : 'mb-3'}`}>
+            <div className={`font-bold text-gray-900 ${isCategoryView ? 'text-sm sm:text-base md:text-lg' : 'text-lg'}`}>
               {formatPrice(product.currentPrice)}
             </div>
-            <div className="text-sm text-gray-500 line-through">
+            <div className={`text-gray-500 line-through ${isCategoryView ? 'text-xs sm:text-sm' : 'text-sm'}`}>
               {formatPrice(product.originalPrice)}
             </div>
           </div>
           
-          <div className="text-xs text-gray-500 mb-3">
+          <div className={`text-gray-500 ${isCategoryView ? 'text-xs mb-2 sm:mb-3' : 'text-xs mb-3'}`}>
             Sold by {product.seller}
           </div>
           
           <div className="text-center">
-            <span className="inline-block bg-gray-100 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">
-              👆 Click to View Details
+            <span className={`inline-block bg-gray-100 text-gray-800 font-medium rounded-full ${isCategoryView ? 'text-xs sm:text-sm px-2 py-0.5 sm:px-3 sm:py-1' : 'text-sm px-3 py-1'}`}>
+              {isCategoryView ? '👆 View Details' : '👆 Click to View Details'}
             </span>
           </div>
         </div>

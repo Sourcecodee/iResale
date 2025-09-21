@@ -1,6 +1,7 @@
 import { Product } from '../components/ProductCard';
 import iphones, { iPhone } from '../data/iPhones';
 import appleWatches, { AppleWatch } from '../data/watch';
+import ipads, { iPad } from '../data/iPads';
 
 // Generate pricing based on iPhone model and storage
 const generatePricing = (iphone: iPhone, storage: string): { currentPrice: number; originalPrice: number; discount: number } => {
@@ -39,6 +40,40 @@ const generatePricing = (iphone: iPhone, storage: string): { currentPrice: numbe
   };
 
   const basePrice = basePrices[iphone.name] || 500000;
+  const storageMultiplier = storageMultipliers[storage] || 1.0;
+  const originalPrice = Math.round(basePrice * storageMultiplier);
+  
+  // Generate discount between 8-20%
+  const discount = Math.floor(Math.random() * 13) + 8;
+  const currentPrice = Math.round(originalPrice * (1 - discount / 100));
+
+  return { currentPrice, originalPrice, discount };
+};
+
+// Generate pricing for iPads
+const generateiPadPricing = (ipad: iPad, storage: string): { currentPrice: number; originalPrice: number; discount: number } => {
+  // Base prices by iPad model (in NGN)
+  const basePrices: { [key: string]: number } = {
+    'iPad (10th Generation)': 280000,
+    'iPad (11th Generation / A16 base iPad)': 320000,
+    'iPad Air (11‑inch, M3)': 450000,
+    'iPad Air (13‑inch, M3)': 550000,
+    'iPad mini (6th / latest)': 380000,
+    'iPad Pro (11‑inch, M4)': 650000,
+    'iPad Pro (13‑inch, M4)': 750000,
+  };
+
+  // Storage multipliers
+  const storageMultipliers: { [key: string]: number } = {
+    '64 GB': 1.0,
+    '128 GB': 1.2,
+    '256 GB': 1.4,
+    '512 GB': 1.7,
+    '1 TB': 2.0,
+    '2 TB': 2.5,
+  };
+
+  const basePrice = basePrices[ipad.name] || 400000;
   const storageMultiplier = storageMultipliers[storage] || 1.0;
   const originalPrice = Math.round(basePrice * storageMultiplier);
   
@@ -93,6 +128,46 @@ export const generateProductsFromiPhones = (): Product[] => {
       battery: iphone.battery,
       releaseYear: iphone.releaseYear,
       description: iphone.description,
+    });
+  });
+
+  return products;
+};
+
+// Generate products from iPad data
+export const generateProductsFromiPads = (): Product[] => {
+  const products: Product[] = [];
+  let id = 3000; // Start from 3000 to avoid conflicts
+
+  ipads.forEach((ipad) => {
+    // Create only one product per iPad model
+    // Use the most common storage option (usually 128GB or 256GB)
+    const storage = ipad.storageOptions.includes('256GB') ? '256GB' : 
+                   ipad.storageOptions.includes('128GB') ? '128GB' : 
+                   ipad.storageOptions[0];
+    
+    const condition = generateCondition(ipad.releaseYear);
+    const pricing = generateiPadPricing(ipad, storage);
+    
+    products.push({
+      id: id++,
+      name: `${ipad.name} UK Used`,
+      image: ipad.image,
+      condition: condition,
+      discount: pricing.discount,
+      storage: storage,
+      currentPrice: pricing.currentPrice,
+      originalPrice: pricing.originalPrice,
+      seller: 'TechGuru UK',
+      category: 'ipads', // All iPad products belong to ipads category
+      // Add iPad-specific properties
+      display: ipad.display,
+      chip: ipad.chip,
+      ram: ipad.ram,
+      cameras: ipad.cameras,
+      battery: ipad.battery,
+      releaseYear: ipad.releaseYear,
+      description: ipad.description,
     });
   });
 
@@ -273,51 +348,6 @@ export const generateAdditionalProducts = (): Product[] => {
     },
     
     
-    // iPads
-    {
-      id: 1013,
-      name: "iPad Pro 12.9-inch UK Used",
-      image: "/src/assets/others/iPad.jpeg",
-      condition: "Excellent",
-      discount: 10,
-      storage: "256GB",
-      battery: "94%",
-      status: "Unlocked",
-      currentPrice: 650000,
-      originalPrice: 720000,
-      seller: "TechGuru UK",
-      category: "ipads"
-    },
-    {
-      id: 1014,
-      name: "iPad Air 5th Gen UK Used",
-      image: "/src/assets/others/iPad.jpeg",
-      condition: "Very Good",
-      discount: 13,
-      storage: "256GB",
-      battery: "91%",
-      status: "Unlocked",
-      currentPrice: 420000,
-      originalPrice: 480000,
-      seller: "TechGuru UK",
-      category: "ipads"
-    },
-    {
-      id: 1015,
-      name: "iPad 10th Gen UK Used",
-      image: "/src/assets/others/iPad.jpeg",
-      condition: "Good",
-      discount: 15,
-      storage: "64GB",
-      color: "Pink",
-      battery: "89%",
-      status: "Unlocked",
-      currentPrice: 280000,
-      originalPrice: 320000,
-      seller: "TechGuru UK",
-      category: "ipads"
-    },
-    
     // MacBooks
     {
       id: 1016,
@@ -356,6 +386,7 @@ export const generateAdditionalProducts = (): Product[] => {
 export const generateAllProducts = (): Product[] => {
   const iphoneProducts = generateProductsFromiPhones();
   const watchProducts = generateProductsFromWatches();
+  const ipadProducts = generateProductsFromiPads();
   const additionalProducts = generateAdditionalProducts();
-  return [...iphoneProducts, ...watchProducts, ...additionalProducts];
+  return [...iphoneProducts, ...watchProducts, ...ipadProducts, ...additionalProducts];
 };

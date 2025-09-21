@@ -22,7 +22,7 @@ export const categories: Category[] = [
     name: 'iPads',
     icon: '/src/assets/others/iPad.jpeg',
     description: 'iPad Pro, iPad Air, and iPad models for work and entertainment',
-    productCount: 3,
+    productCount: 7,
     color: 'bg-gradient-to-br from-purple-500 to-purple-600'
   },
   {

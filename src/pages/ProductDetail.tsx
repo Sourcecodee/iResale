@@ -93,13 +93,13 @@ const ProductDetail: React.FC = () => {
                     <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
                   </svg>
                 </div>
-                <h1 className="text-2xl brand-font bg-gradient-to-r from-gray-800 to-black bg-clip-text text-transparent">iMint</h1>
+                <h1 className="text-xl sm:text-2xl brand-font bg-gradient-to-r from-gray-800 to-black bg-clip-text text-transparent">iMint</h1>
               </Link>
             </div>
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => navigate(-1)}
-                className="text-gray-800 hover:text-black font-medium"
+                className="text-gray-800 hover:text-black font-medium text-sm sm:text-base"
               >
                 ← Back
               </button>
@@ -108,11 +108,11 @@ const ProductDetail: React.FC = () => {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-7 lg:py-8 pt-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12">
           {/* Product Image Section */}
-          <div className="space-y-6">
-            <div className="bg-white rounded-2xl shadow-lg p-8">
+          <div className="space-y-4 sm:space-y-5 lg:space-y-6">
+            <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-7 lg:p-8">
               <div className="relative">
                 <div 
                   className={`w-full h-[500px] bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl flex items-center justify-center transition-transform duration-1000 overflow-hidden ${

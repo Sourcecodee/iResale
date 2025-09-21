@@ -34,7 +34,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick }) => {
         {/* Content overlay */}
         <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
           <h3 className="text-2xl font-bold mb-2">{category.name}</h3>
-          <p className="text-white/90 text-sm mb-4 leading-relaxed">{category.description}</p>
+          <p className="hidden sm:block text-white/90 text-sm mb-4 leading-relaxed">{category.description}</p>
           
           <div className="flex items-center justify-between">
             <span className="text-white/80 text-sm">

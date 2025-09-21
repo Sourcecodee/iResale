@@ -51,25 +51,25 @@ const ServicesSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-8 sm:py-12 lg:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
             Our Premium Services
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto">
             Discover our comprehensive iPhone services designed to meet all your needs, 
             from upgrades to premium UK-sourced devices.
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8">
           {services.map((service) => (
             <div
               key={service.id}
-              className={`relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-8 border-2 ${
+              className={`relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 sm:p-7 lg:p-8 border-2 ${
                 service.highlight 
                   ? 'border-gray-800 bg-gradient-to-br from-gray-50 to-gray-100' 
                   : 'border-gray-100 hover:border-gray-300'

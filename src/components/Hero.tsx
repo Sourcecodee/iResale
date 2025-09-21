@@ -2,18 +2,18 @@ import React from 'react';
 
 const Hero: React.FC = () => {
   return (
-    <section className="pt-48 pb-20 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 -mt-24">
+    <section className="pt-48 sm:pt-40 lg:pt-48 pb-20 sm:pb-16 lg:pb-20 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 -mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-4xl font-bold text-white mb-6">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-6">
           UK Used iPhones & Accessories
         </h2>
-        <p className="text-lg text-gray-300 mb-12 max-w-3xl mx-auto">
+        <p className="text-sm sm:text-base lg:text-lg text-gray-300 mb-20 sm:mb-12 max-w-3xl mx-auto">
           Browse our collection of premium UK used iPhones, chargers, cases, and accessories. 
           All products verified and tested. Fast shipping to Nigeria available.
         </p>
         
         {/* Feature Highlights */}
-        <div className="flex justify-center space-x-8 mb-12">
+        <div className="hidden sm:flex justify-center space-x-8 mb-12">
           <div className="flex items-center">
             <div className="w-8 h-8 border-2 border-green-500 rounded-full flex items-center justify-center mr-2">
               <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">

@@ -47,8 +47,8 @@ const CategorySlider: React.FC<CategorySliderProps> = ({ categories, onCategoryC
 
   return (
     <div 
-      className="relative bg-gray-50 py-12" 
-      style={{ minHeight: '500px' }}
+      className="relative bg-gray-50 py-8 sm:py-10 lg:py-12" 
+      style={{ minHeight: '400px' }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

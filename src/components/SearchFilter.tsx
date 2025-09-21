@@ -45,10 +45,10 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
     setSelectedCaseSize?.('All Case Sizes');
   };
   return (
-    <section className="py-6 bg-white border-b border-gray-200">
+    <section className="py-4 sm:py-5 lg:py-6 bg-white border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row gap-4">
-          <div className="flex-1">
+        <div className="flex flex-col gap-3 sm:gap-4">
+          <div className="w-full">
             <input
               type="text"
               placeholder="Search for products..."
@@ -57,7 +57,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               {!isCategoryView && (
                 <select
                   value={selectedCategory}

@@ -82,3 +82,19 @@ export const getiPhoneImage = (productName: string): string => {
   // Default fallback
   return '/src/assets/others/iPhone.jpeg';
 };
+
+// Enhanced function to get iPhone image with fallback
+export const getProductImage = (product: any): string => {
+  // If product already has an image path, use it
+  if (product.image && product.image !== '/api/placeholder/300/300') {
+    return product.image;
+  }
+  
+  // If it's an iPhone, use the iPhone image mapper
+  if (product.name && product.name.toLowerCase().includes('iphone')) {
+    return getiPhoneImage(product.name);
+  }
+  
+  // Default fallback
+  return '/src/assets/others/iPhone.jpeg';
+};

@@ -2,7 +2,7 @@
 
 ## How to Update WhatsApp Contact Information
 
-To update the WhatsApp contact information for your iResale store, simply edit the `whatsappConfig.ts` file in this directory.
+To update the WhatsApp contact information for your iMint store, simply edit the `whatsappConfig.ts` file in this directory.
 
 ### Quick Setup
 

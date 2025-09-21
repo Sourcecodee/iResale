@@ -20,7 +20,7 @@ const AdminProductList: React.FC<AdminProductListProps> = ({ onEdit }) => {
   const getConditionColor = (condition: string) => {
     switch (condition) {
       case 'Excellent': return 'bg-green-100 text-green-800';
-      case 'Very Good': return 'bg-blue-100 text-blue-800';
+      case 'Very Good': return 'bg-teal-100 text-teal-800';
       case 'Good': return 'bg-yellow-100 text-yellow-800';
       default: return 'bg-gray-100 text-gray-800';
     }
@@ -120,7 +120,7 @@ const AdminProductList: React.FC<AdminProductListProps> = ({ onEdit }) => {
                 <div className="flex justify-end space-x-2">
                   <button
                     onClick={() => onEdit(product)}
-                    className="text-blue-600 hover:text-blue-900"
+                    className="text-emerald-600 hover:text-emerald-900"
                   >
                     Edit
                   </button>

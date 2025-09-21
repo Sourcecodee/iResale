@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getiPhoneImage } from '../utils/iphoneImageMapper';
+import { getProductImage } from '../utils/iphoneImageMapper';
 
 export interface Product {
   id: number;
@@ -13,6 +13,20 @@ export interface Product {
   originalPrice: number;
   seller: string;
   compatible?: string;
+  // iPhone-specific properties
+  display?: string;
+  chip?: string;
+  ram?: string;
+  cameras?: {
+    rear: string;
+    front: string;
+  };
+  battery?: string;
+  releaseYear?: number;
+  description?: string;
+  // Additional properties
+  color?: string;
+  status?: string;
 }
 
 interface ProductCardProps {
@@ -31,18 +45,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const getConditionColor = (condition: string) => {
     switch (condition) {
       case 'Excellent': return 'bg-green-500';
-      case 'Very Good': return 'bg-blue-500';
+      case 'Very Good': return 'bg-teal-500';
       case 'Good': return 'bg-yellow-500';
       default: return 'bg-gray-500';
     }
   };
 
-  // Get the appropriate image for iPhone products
-  const getProductImage = () => {
-    if (product.name.toLowerCase().includes('iphone')) {
-      return getiPhoneImage(product.name);
-    }
-    return product.image;
+  // Get the appropriate image for products
+  const getImageSrc = () => {
+    return getProductImage(product);
   };
 
   return (
@@ -51,7 +62,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div className="relative">
           <div className="w-full h-64 bg-gray-200 flex items-center justify-center overflow-hidden">
             <img 
-              src={getProductImage()} 
+              src={getImageSrc()} 
               alt={product.name}
               className="w-full h-full object-cover"
               onError={(e) => {
@@ -77,12 +88,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </div>
         
         <div className="p-4">
-          <h4 className="font-semibold text-gray-900 mb-2 hover:text-blue-600 transition-colors">{product.name}</h4>
+          <h4 className="font-semibold text-gray-900 mb-2 hover:text-emerald-600 transition-colors">{product.name}</h4>
           
           <div className="space-y-1 text-sm text-gray-600 mb-3">
             {product.storage && <div>Storage: {product.storage}</div>}
-            <div>RAM: 8GB</div>
-            <div>Processor: A17 Pro</div>
+            {product.ram && <div>RAM: {product.ram}</div>}
+            {product.chip && <div>Processor: {product.chip}</div>}
             {product.compatible && <div>Compatible: {product.compatible}</div>}
           </div>
           
@@ -100,7 +111,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
           
           <div className="text-center">
-            <span className="inline-block bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">
+            <span className="inline-block bg-emerald-100 text-emerald-800 text-sm font-medium px-3 py-1 rounded-full">
               👆 Click to View Details
             </span>
           </div>

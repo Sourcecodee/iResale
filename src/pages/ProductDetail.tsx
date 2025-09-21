@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useProducts } from '../context/ProductContext';
 import { Product } from '../components/ProductCard';
-import { getiPhoneImage } from '../utils/iphoneImageMapper';
+import { getProductImage } from '../utils/iphoneImageMapper';
 import { getWhatsAppUrl } from '../config/whatsappConfig';
 
 const ProductDetail: React.FC = () => {
@@ -30,7 +30,7 @@ const ProductDetail: React.FC = () => {
   const getConditionColor = (condition: string) => {
     switch (condition) {
       case 'Excellent': return 'bg-green-100 text-green-800 border-green-200';
-      case 'Very Good': return 'bg-blue-100 text-blue-800 border-blue-200';
+      case 'Very Good': return 'bg-teal-100 text-teal-800 border-teal-200';
       case 'Good': return 'bg-yellow-100 text-yellow-800 border-yellow-200';
       default: return 'bg-gray-100 text-gray-800 border-gray-200';
     }
@@ -42,16 +42,18 @@ const ProductDetail: React.FC = () => {
   };
 
   const handleWhatsAppContact = () => {
-    const whatsappUrl = getWhatsAppUrl(product.name, formatPrice(product.currentPrice));
-    window.open(whatsappUrl, '_blank');
+    if (product) {
+      const whatsappUrl = getWhatsAppUrl(product.name, formatPrice(product.currentPrice));
+      window.open(whatsappUrl, '_blank');
+    }
   };
 
   // Get the appropriate image for the product
-  const getProductImage = () => {
-    if (product.name.toLowerCase().includes('iphone')) {
-      return getiPhoneImage(product.name);
+  const getImageSrc = () => {
+    if (product) {
+      return getProductImage(product);
     }
-    return product.image;
+    return '/src/assets/others/iPhone.jpeg';
   };
 
   if (!product) {
@@ -63,7 +65,7 @@ const ProductDetail: React.FC = () => {
           <p className="text-gray-600 mb-4">The product you're looking for doesn't exist.</p>
           <Link 
             to="/" 
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
           >
             Back to Store
           </Link>
@@ -80,18 +82,18 @@ const ProductDetail: React.FC = () => {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
               <Link to="/" className="flex items-center">
-                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
+                <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center mr-3 shadow-lg">
                   <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M7 2a2 2 0 00-2 2v12a2 2 0 002 2h6a2 2 0 002-2V4a2 2 0 00-2-2H7zm3 14a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
+                    <path fillRule="evenodd" d="M10 2L3 7v11a1 1 0 001 1h12a1 1 0 001-1V7l-7-5zM8 15v-3a2 2 0 114 0v3H8z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <h1 className="text-2xl font-bold text-gray-900">iResale</h1>
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">iMint</h1>
               </Link>
             </div>
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => navigate(-1)}
-                className="text-blue-600 hover:text-blue-800 font-medium"
+                className="text-emerald-600 hover:text-emerald-800 font-medium"
               >
                 ← Back
               </button>
@@ -117,7 +119,7 @@ const ProductDetail: React.FC = () => {
                   }}
                 >
                   <img 
-                    src={getProductImage()} 
+                    src={getImageSrc()} 
                     alt={product.name}
                     className="w-full h-full object-contain rounded-xl"
                     onError={(e) => {
@@ -151,7 +153,7 @@ const ProductDetail: React.FC = () => {
               <div className="mt-6 text-center">
                 <button
                   onClick={handleSpin}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                  className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
                 >
                   🎯 3D Showroom View
                 </button>
@@ -188,28 +190,34 @@ const ProductDetail: React.FC = () => {
                       <div className="font-semibold text-gray-900">{product.storage}</div>
                     </div>
                   )}
-                  <div className="bg-gray-50 p-4 rounded-lg">
-                    <div className="text-sm text-gray-600">RAM</div>
-                    <div className="font-semibold text-gray-900">8GB</div>
-                  </div>
-                  <div className="bg-gray-50 p-4 rounded-lg">
-                    <div className="text-sm text-gray-600">Processor</div>
-                    <div className="font-semibold text-gray-900">A17 Pro</div>
-                  </div>
-                  <div className="bg-gray-50 p-4 rounded-lg">
-                    <div className="text-sm text-gray-600">Display</div>
-                    <div className="font-semibold text-gray-900">6.1" Super Retina XDR</div>
-                  </div>
+                  {product.ram && (
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <div className="text-sm text-gray-600">RAM</div>
+                      <div className="font-semibold text-gray-900">{product.ram}</div>
+                    </div>
+                  )}
+                  {product.chip && (
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <div className="text-sm text-gray-600">Processor</div>
+                      <div className="font-semibold text-gray-900">{product.chip}</div>
+                    </div>
+                  )}
+                  {product.display && (
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <div className="text-sm text-gray-600">Display</div>
+                      <div className="font-semibold text-gray-900">{product.display}</div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Seller Info */}
-                <div className="bg-blue-50 p-4 rounded-lg mb-6">
+                <div className="bg-emerald-50 p-4 rounded-lg mb-6">
                   <div className="flex items-center">
-                    <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center mr-3">
-                      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                      </svg>
-                    </div>
+                  <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center mr-3 shadow-lg">
+                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                    </svg>
+                  </div>
                     <div>
                       <div className="font-medium text-gray-900">Sold by {product.seller}</div>
                       <div className="text-sm text-gray-600">Verified UK Seller</div>
@@ -252,26 +260,42 @@ const ProductDetail: React.FC = () => {
                     <span className="font-medium text-gray-900">{product.storage}</span>
                   </div>
                 )}
-                <div className="flex justify-between py-3 border-b border-gray-200">
-                  <span className="text-gray-600">RAM</span>
-                  <span className="font-medium text-gray-900">8GB</span>
-                </div>
-                <div className="flex justify-between py-3 border-b border-gray-200">
-                  <span className="text-gray-600">Processor</span>
-                  <span className="font-medium text-gray-900">A17 Pro Chip</span>
-                </div>
-                <div className="flex justify-between py-3 border-b border-gray-200">
-                  <span className="text-gray-600">Display</span>
-                  <span className="font-medium text-gray-900">6.1" Super Retina XDR</span>
-                </div>
-                <div className="flex justify-between py-3 border-b border-gray-200">
-                  <span className="text-gray-600">Camera System</span>
-                  <span className="font-medium text-gray-900">48MP Main + 12MP Ultra Wide</span>
-                </div>
-                <div className="flex justify-between py-3 border-b border-gray-200">
-                  <span className="text-gray-600">Connectivity</span>
-                  <span className="font-medium text-gray-900">5G, Wi-Fi 6E, Bluetooth 5.3</span>
-                </div>
+                {product.ram && (
+                  <div className="flex justify-between py-3 border-b border-gray-200">
+                    <span className="text-gray-600">RAM</span>
+                    <span className="font-medium text-gray-900">{product.ram}</span>
+                  </div>
+                )}
+                {product.chip && (
+                  <div className="flex justify-between py-3 border-b border-gray-200">
+                    <span className="text-gray-600">Processor</span>
+                    <span className="font-medium text-gray-900">{product.chip}</span>
+                  </div>
+                )}
+                {product.display && (
+                  <div className="flex justify-between py-3 border-b border-gray-200">
+                    <span className="text-gray-600">Display</span>
+                    <span className="font-medium text-gray-900">{product.display}</span>
+                  </div>
+                )}
+                {product.cameras && (
+                  <div className="flex justify-between py-3 border-b border-gray-200">
+                    <span className="text-gray-600">Camera System</span>
+                    <span className="font-medium text-gray-900">{product.cameras.rear}</span>
+                  </div>
+                )}
+                {product.battery && (
+                  <div className="flex justify-between py-3 border-b border-gray-200">
+                    <span className="text-gray-600">Battery</span>
+                    <span className="font-medium text-gray-900">{product.battery}</span>
+                  </div>
+                )}
+                {product.releaseYear && (
+                  <div className="flex justify-between py-3 border-b border-gray-200">
+                    <span className="text-gray-600">Release Year</span>
+                    <span className="font-medium text-gray-900">{product.releaseYear}</span>
+                  </div>
+                )}
                 {product.compatible && (
                   <div className="flex justify-between py-3 border-b border-gray-200">
                     <span className="text-gray-600">Compatibility</span>

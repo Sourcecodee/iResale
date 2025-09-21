@@ -85,7 +85,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ product, onClose }) => 
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
             placeholder="e.g., iPhone 15 Pro Max UK Used"
           />
         </div>
@@ -100,7 +100,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ product, onClose }) => 
             value={formData.condition}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
           >
             <option value="Excellent">Excellent</option>
             <option value="Very Good">Very Good</option>
@@ -121,7 +121,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ product, onClose }) => 
             required
             min="0"
             max="100"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
             placeholder="e.g., 15"
           />
         </div>
@@ -135,7 +135,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ product, onClose }) => 
             name="storage"
             value={formData.storage}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
           >
             <option value="">No Storage</option>
             <option value="128GB">128GB</option>
@@ -155,7 +155,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ product, onClose }) => 
             name="compatible"
             value={formData.compatible}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
           >
             <option value="">Select Compatibility</option>
             <option value="iPhone 17 Pro">iPhone 17 Pro</option>
@@ -190,7 +190,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ product, onClose }) => 
             onChange={handleChange}
             required
             min="0"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
             placeholder="e.g., 980000"
           />
         </div>
@@ -207,7 +207,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ product, onClose }) => 
             onChange={handleChange}
             required
             min="0"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
             placeholder="e.g., 1100000"
           />
         </div>
@@ -223,7 +223,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ product, onClose }) => 
             value={formData.seller}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
             placeholder="e.g., TechGuru UK"
           />
         </div>
@@ -240,7 +240,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ product, onClose }) => 
         </button>
         <button
           type="submit"
-          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+          className="px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
         >
           {product ? 'Update Product' : 'Add Product'}
         </button>

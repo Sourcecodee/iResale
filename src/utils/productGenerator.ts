@@ -230,7 +230,7 @@ export const generateAdditionalProducts = (): Product[] => {
     {
       id: 1001,
       name: "Premium Leather iPhone 17 Pro Case",
-      image: "/src/assets/others/Casing.jpeg",
+      image: "/assets/others/Casing.jpeg",
       condition: "Excellent",
       discount: 17,
       compatible: "iPhone 17 Pro",
@@ -242,7 +242,7 @@ export const generateAdditionalProducts = (): Product[] => {
     {
       id: 1002,
       name: "Clear MagSafe iPhone 16 Pro Case",
-      image: "/src/assets/others/Casing.jpeg",
+      image: "/assets/others/Casing.jpeg",
       condition: "Very Good",
       discount: 18,
       compatible: "iPhone 16 Pro",
@@ -254,7 +254,7 @@ export const generateAdditionalProducts = (): Product[] => {
     {
       id: 1003,
       name: "Premium iPhone Screen Protector",
-      image: "/src/assets/others/Casing.jpeg",
+      image: "/assets/others/Casing.jpeg",
       condition: "Excellent",
       discount: 20,
       compatible: "iPhone 15 series and later",
@@ -268,7 +268,7 @@ export const generateAdditionalProducts = (): Product[] => {
     {
       id: 1004,
       name: "Apple MagSafe Wireless Charger",
-      image: "/src/assets/others/Accessories.jpeg",
+      image: "/assets/others/Accessories.jpeg",
       condition: "Excellent",
       discount: 12,
       compatible: "iPhone 12 and later",
@@ -280,7 +280,7 @@ export const generateAdditionalProducts = (): Product[] => {
     {
       id: 1005,
       name: "Original Apple USB-C to Lightning Cable",
-      image: "/src/assets/others/Accessories.jpeg",
+      image: "/assets/others/Accessories.jpeg",
       condition: "Excellent",
       discount: 17,
       compatible: "iPhone 15 series",
@@ -292,7 +292,7 @@ export const generateAdditionalProducts = (): Product[] => {
     {
       id: 1006,
       name: "Apple 20W USB-C Power Adapter",
-      image: "/src/assets/others/Accessories.jpeg",
+      image: "/assets/others/Accessories.jpeg",
       condition: "Very Good",
       discount: 12,
       compatible: "iPhone 12 and later",
@@ -306,7 +306,7 @@ export const generateAdditionalProducts = (): Product[] => {
     {
       id: 1007,
       name: "Apple AirPods Pro 2nd Gen UK Used",
-      image: "/src/assets/others/AirPods.jpeg",
+      image: "/assets/others/AirPods.jpeg",
       condition: "Excellent",
       discount: 18,
       battery: "95%",
@@ -319,7 +319,7 @@ export const generateAdditionalProducts = (): Product[] => {
     {
       id: 1008,
       name: "Apple AirPods 3rd Gen UK Used",
-      image: "/src/assets/others/AirPods.jpeg",
+      image: "/assets/others/AirPods.jpeg",
       condition: "Very Good",
       discount: 20,
       battery: "88%",
@@ -332,7 +332,7 @@ export const generateAdditionalProducts = (): Product[] => {
     {
       id: 1009,
       name: "Apple AirPods Max UK Used",
-      image: "/src/assets/others/AirPods.jpeg",
+      image: "/assets/others/AirPods.jpeg",
       condition: "Very Good",
       discount: 15,
       battery: "90%",
@@ -348,7 +348,7 @@ export const generateAdditionalProducts = (): Product[] => {
     {
       id: 1016,
       name: "MacBook Air M2 UK Used",
-      image: "/src/assets/others/Macbook.jpeg",
+      image: "/assets/others/Macbook.jpeg",
       condition: "Excellent",
       discount: 8,
       storage: "256 GB",
@@ -362,7 +362,7 @@ export const generateAdditionalProducts = (): Product[] => {
     {
       id: 1017,
       name: "MacBook Pro 14-inch M2 UK Used",
-      image: "/src/assets/others/Macbook.jpeg",
+      image: "/assets/others/Macbook.jpeg",
       condition: "Very Good",
       discount: 11,
       storage: "512 GB",

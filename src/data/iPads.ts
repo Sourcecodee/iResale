@@ -27,7 +27,7 @@ const ipads: iPad[] = [
         rear: "12 MP Wide",
         front: "12 MP Ultra Wide Center Stage"
       },
-      image: "/src/assets/iPads/iPad-10th-Generation.jpeg",
+      image: "/assets/iPads/iPad-10th-Generation.jpeg",
       description: "A modern redesign from older base iPads — USB‑C, flat edges, brighter screen and fresh colours."
     },
     {
@@ -42,7 +42,7 @@ const ipads: iPad[] = [
         rear: "12 MP Wide",
         front: "12 MP Center Stage"
       },
-      image: "/src/assets/iPads/iPad-11th-Generation.jpeg",
+      image: "/assets/iPads/iPad-11th-Generation.jpeg",
       description: "Latest base iPad: upgraded chip, doubled starting storage, refined internals for everyday use."
     },
     {
@@ -57,7 +57,7 @@ const ipads: iPad[] = [
         rear: "12 MP Wide",
         front: "12 MP Ultra Wide Center Stage"
       },
-      image: "/src/assets/iPads/iPad-Air-11-inch-M3.jpeg",
+      image: "/assets/iPads/iPad-Air-11-inch-M3.jpeg",
       description: "Lightweight yet powerful: the M3 chip, great display, high storage options, ideal for creatives & multitaskers."
     },
     {
@@ -72,7 +72,7 @@ const ipads: iPad[] = [
         rear: "12 MP Wide",
         front: "12 MP Ultra Wide Center Stage"
       },
-      image: "/src/assets/iPads/iPad-Air-13-inch-M3.jpeg",
+      image: "/assets/iPads/iPad-Air-13-inch-M3.jpeg",
       description: "Big‑screen Air: excellent for multitasking, content creation, or as a laptop replacement in portability‑focused setups."
     },
     {
@@ -87,7 +87,7 @@ const ipads: iPad[] = [
         rear: "12 MP Wide",
         front: "12 MP Ultra Wide Center Stage"
       },
-      image: "/src/assets/iPads/iPad-mini-6th-latest.jpeg",
+      image: "/assets/iPads/iPad-mini-6th-latest.jpeg",
       description: "Compact powerhouse: less size, strong chip & RAM, ideal for portability and travel."
     },
     {
@@ -102,7 +102,7 @@ const ipads: iPad[] = [
         rear: "12 MP Wide + Ultra Wide + Telephoto / LiDAR etc.",
         front: "12 MP / Ultra Wide Center Stage"
       },
-      image: "/src/assets/iPads/iPad-Pro-11-inch-M4.jpeg",
+      image: "/assets/iPads/iPad-Pro-11-inch-M4.jpeg",
       description: "Designed for power users: high refresh display, strong chip, excellent for creatives & professionals."
     },
     {
@@ -117,7 +117,7 @@ const ipads: iPad[] = [
         rear: "12 MP Wide + Ultra Wide + Telephoto / LiDAR etc.",
         front: "12 MP / Ultra Wide Center Stage"
       },
-      image: "/src/assets/iPads/iPad-Pro-13-inch-M4.jpeg",
+      image: "/assets/iPads/iPad-Pro-13-inch-M4.jpeg",
       description: "Max canvas size, highest specs, powerhouse performance for professional & creator workflows."
     }
   ];

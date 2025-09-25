@@ -27,7 +27,7 @@ const iphones: iPhone[] = [
       battery: "Up to 16 hrs video playback",
       storageOptions: ["64 GB", "128 GB", "256 GB"],
       releaseYear: 2018,
-      image: "/src/assets/iPhone/iPhone XR/iPhone-XR.jpeg",
+      image: "/assets/iPhone/iPhone XR/iPhone-XR.jpeg",
       description: "Balanced performance with good battery life, and a solid all-rounder at a lower cost in the XR line."
     },
     {
@@ -42,7 +42,7 @@ const iphones: iPhone[] = [
       battery: "≈ 2,227 mAh",  // :contentReference[oaicite:2]{index=2}
       storageOptions: ["64 GB", "128 GB", "256 GB"],
       releaseYear: 2020,
-      image: "/src/assets/iPhone/iPhone 12/iPhone-12-Mini.jpeg",
+      image: "/assets/iPhone/iPhone 12/iPhone-12-Mini.jpeg",
       description: "Compact‑sized model; great for users who prefer smaller devices but still want flagship features."
     },
     {
@@ -57,7 +57,7 @@ const iphones: iPhone[] = [
       battery: "≈ 2,815 mAh",  // :contentReference[oaicite:4]{index=4}
       storageOptions: ["64 GB", "128 GB", "256 GB"],
       releaseYear: 2020,
-      image: "/src/assets/iPhone/iPhone 12/iPhone-12.jpeg",
+      image: "/assets/iPhone/iPhone 12/iPhone-12.jpeg",
       description: "Standard base model in the 12 series; offers OLED display, 5G, and strong performance."
     },
     {
@@ -72,7 +72,7 @@ const iphones: iPhone[] = [
       battery: "≈ 2,815 mAh",  // :contentReference[oaicite:6]{index=6}
       storageOptions: ["128 GB", "256 GB", "512 GB"],
       releaseYear: 2020,
-      image: "/src/assets/iPhone/iPhone 12/iPhone-12-Pro.jpeg",
+      image: "/assets/iPhone/iPhone 12/iPhone-12-Pro.jpeg",
       description: "Pro‑level camera improvements, premium materials, and enhanced photography features."
     },
     {
@@ -87,7 +87,7 @@ const iphones: iPhone[] = [
       battery: "≈ 3,687 mAh",  // :contentReference[oaicite:8]{index=8}
       storageOptions: ["128 GB", "256 GB", "512 GB"],
       releaseYear: 2020,
-      image: "/src/assets/iPhone/iPhone 12/iPhone-12-Pro-Max.jpeg",
+      image: "/assets/iPhone/iPhone 12/iPhone-12-Pro-Max.jpeg",
       description: "Largest screen in the 12 lineup, better zoom, best battery capacity among the 12 series."
     },
     {
@@ -102,7 +102,7 @@ const iphones: iPhone[] = [
       battery: "Improved over 12, moderate gains",
       storageOptions: ["128 GB", "256 GB", "512 GB"],
       releaseYear: 2021,
-      image: "/src/assets/iPhone/iPhone 13/iPhone-13.jpeg",
+      image: "/assets/iPhone/iPhone 13/iPhone-13.jpeg",
       description: "Solid all‑round model: improvements in camera processing, battery efficiency, and slight design tweaks."
     },
     {
@@ -117,7 +117,7 @@ const iphones: iPhone[] = [
       battery: "Better than non‑Pro; stronger for photography/video",
       storageOptions: ["128 GB", "256 GB", "512 GB", "1 TB"],
       releaseYear: 2021,
-      image: "/src/assets/iPhone/iPhone 13/iPhone-13-Pro.jpeg",
+      image: "/assets/iPhone/iPhone 13/iPhone-13-Pro.jpeg",
       description: "Pro benefits: smoother display, better camera flexibility, enhanced video features."
     },
     {
@@ -132,7 +132,7 @@ const iphones: iPhone[] = [
       battery: "Largest in the 13 series, great for video & gaming",
       storageOptions: ["128 GB", "256 GB", "512 GB", "1 TB"],
       releaseYear: 2021,
-      image: "/src/assets/iPhone/iPhone 13/iPhone-13-Pro-Max.jpeg",
+      image: "/assets/iPhone/iPhone 13/iPhone-13-Pro-Max.jpeg",
       description: "Flagship size in 13, with best camera and battery in that generation."
     },
     {
@@ -147,7 +147,7 @@ const iphones: iPhone[] = [
       battery: "Better efficiency and small battery improvements over 13",
       storageOptions: ["128 GB", "256 GB", "512 GB"],
       releaseYear: 2022,
-      image: "/src/assets/iPhone/iPhone 14/iPhone-14.jpeg",
+      image: "/assets/iPhone/iPhone 14/iPhone-14.jpeg",
       description: "Incremental upgrades: slightly better performance, camera tweaks, new safety features."
     },
     {
@@ -162,7 +162,7 @@ const iphones: iPhone[] = [
       battery: "Stronger battery, more power for high frame rate usage",
       storageOptions: ["128 GB", "256 GB", "512 GB", "1 TB"],
       releaseYear: 2022,
-      image: "/src/assets/iPhone/iPhone 14/iPhone-14-Pro.jpeg",
+      image: "/assets/iPhone/iPhone 14/iPhone-14-Pro.jpeg",
       description: "Flagship‑grade model with high refresh rate display and advanced camera sensors."
     },
     {
@@ -177,7 +177,7 @@ const iphones: iPhone[] = [
       battery: "Largest battery in 14 series, excellent for multimedia",
       storageOptions: ["128 GB", "256 GB", "512 GB", "1 TB"],
       releaseYear: 2022,
-      image: "/src/assets/iPhone/iPhone 14/iPhone-14-Pro-Max.jpeg",
+      image: "/assets/iPhone/iPhone 14/iPhone-14-Pro-Max.jpeg",
       description: "Largest screen in the 14 lineup with Pro features and best battery capacity."
     },
     {
@@ -192,7 +192,7 @@ const iphones: iPhone[] = [
       battery: "Better efficiency and battery life than 14",
       storageOptions: ["128 GB", "256 GB", "512 GB", "1 TB (in Pro)"],
       releaseYear: 2023,
-      image: "/src/assets/iPhone/iPhone 15/iPhone-15.jpeg",
+      image: "/assets/iPhone/iPhone 15/iPhone-15.jpeg",
       description: "First mid‑tier base with 48 MP main camera; more improvements in charging & display tech."
     },
     {
@@ -207,7 +207,7 @@ const iphones: iPhone[] = [
       battery: "Improved power delivery, better performance under load",
       storageOptions: ["128 GB", "256 GB", "512 GB", "1 TB"],
       releaseYear: 2023,
-      image: "/src/assets/iPhone/iPhone 15/iPhone-15-Pro.jpeg",
+      image: "/assets/iPhone/iPhone 15/iPhone-15-Pro.jpeg",
       description: "Top of the line: Pro features (display, camera, materials) designed for power users."
     },
     {
@@ -222,7 +222,7 @@ const iphones: iPhone[] = [
       battery: "Largest battery in 15 series, excellent for power users",
       storageOptions: ["256 GB", "512 GB", "1 TB"],
       releaseYear: 2023,
-      image: "/src/assets/iPhone/iPhone 15/iPhone-15-Pro-Max.jpeg",
+      image: "/assets/iPhone/iPhone 15/iPhone-15-Pro-Max.jpeg",
       description: "Largest screen in the 15 lineup with Pro features and best battery capacity."
     },
     {
@@ -237,7 +237,7 @@ const iphones: iPhone[] = [
       battery: "Enhanced efficiency and battery life improvements over 15",
       storageOptions: ["128 GB", "256 GB", "512 GB"],
       releaseYear: 2024,
-      image: "/src/assets/iPhone/iPhone 16/iPhone-16.jpeg",
+      image: "/assets/iPhone/iPhone 16/iPhone-16.jpeg",
       description: "Value & performance in the 16 series; good balance if you want newer chip & camera without going Pro."
     },
     {
@@ -252,7 +252,7 @@ const iphones: iPhone[] = [
       battery: "Enhanced efficiency and battery life improvements over 15 Pro",
       storageOptions: ["256 GB", "512 GB", "1 TB"],
       releaseYear: 2024,
-      image: "/src/assets/iPhone/iPhone 16/iPhone-16-Pro.jpeg",
+      image: "/assets/iPhone/iPhone 16/iPhone-16-Pro.jpeg",
       description: "Pro model in the 16 lineup: advanced display, cameras, and features for creators and heavy users."
     },
     {
@@ -267,7 +267,7 @@ const iphones: iPhone[] = [
       battery: "Largest battery in 16 series, excellent for multimedia, gaming",
       storageOptions: ["256 GB", "512 GB", "1 TB"],
       releaseYear: 2024,
-      image: "/src/assets/iPhone/iPhone 16/iPhone-16-Pro-Max.jpeg",
+      image: "/assets/iPhone/iPhone 16/iPhone-16-Pro-Max.jpeg",
       description: "Flagship of flagships: max display size, top camera setup, highest RAM & storage."
     },
     {
@@ -282,7 +282,7 @@ const iphones: iPhone[] = [
       battery: "Longer battery life, faster charging, more efficient internals",
       storageOptions: ["256 GB", "512 GB", "1 TB"],
       releaseYear: 2025,
-      image: "/src/assets/iPhone/iPhone 17/iPhone-17.jpeg",
+      image: "/assets/iPhone/iPhone 17/iPhone-17.jpeg",
       description: "Latest generation; more powerful chip, display improvements; good choice for those wanting the newest without going Pro‑Max."
     },
     {
@@ -297,7 +297,7 @@ const iphones: iPhone[] = [
       battery: "Top of the line power, large battery expected (Pro versions designed for power users)",
       storageOptions: ["256 GB", "512 GB", "1 TB", "2 TB"],
       releaseYear: 2025,
-      image: "/src/assets/iPhone/iPhone 17/iPhone-17-Pro.jpeg",
+      image: "/assets/iPhone/iPhone 17/iPhone-17-Pro.jpeg",
       description: "Pro model in the 17 lineup: advanced display, cameras, and features for creators and heavy users."
     },
     {
@@ -312,7 +312,7 @@ const iphones: iPhone[] = [
       battery: "Largest battery in 17 series, excellent for multimedia, gaming",
       storageOptions: ["256 GB", "512 GB", "1 TB", "2 TB"],
       releaseYear: 2025,
-      image: "/src/assets/iPhone/iPhone 17/iPhone-17-Pro-Max.jpeg",
+      image: "/assets/iPhone/iPhone 17/iPhone-17-Pro-Max.jpeg",
       description: "Flagship of flagships: max display size, top camera setup, highest RAM & storage."
     }
   ];

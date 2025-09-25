@@ -41,7 +41,7 @@ const appleWatches: AppleWatch[] = [
         "Accelerometer",
         "Ambient light sensor"
       ],
-      image: "/src/assets/Watch/series8/Apple-Watch-Series-8.jpeg",
+      image: "/assets/Watch/series8/Apple-Watch-Series-8.jpeg",
       description: "Series 8 brings a solid set of health sensors, 1 GB RAM, a durable build, always‑on display and 32 GB storage – good balance between features and price."
     },
     {
@@ -68,7 +68,7 @@ const appleWatches: AppleWatch[] = [
         "Gyroscope",
         "Ambient light sensor"
       ],
-      image: "/src/assets/Watch/series9/Apple-Watch-Series-9.jpeg",
+      image: "/assets/Watch/series9/Apple-Watch-Series-9.jpeg",
       description: "Series 9 improves display brightness, adds more storage (64 GB), maintains similar battery capacity, plus upgraded sensors – a good step up from Series 8."
     },
     {
@@ -99,7 +99,7 @@ const appleWatches: AppleWatch[] = [
         "Depth gauge",
         "Water temperature sensor"
       ],
-      image: "/src/assets/Watch/series10/Apple-Watch-Series-10.jpeg",
+      image: "/assets/Watch/series10/Apple-Watch-Series-10.jpeg",
       description: "Series 10 features a bigger, brighter wide‑angle display, thinner and lighter body, new S10 chip, 64 GB storage, and more advanced sensors. Excellent choice for those wanting the latest smartwatch tech."
     },
     {
@@ -126,7 +126,7 @@ const appleWatches: AppleWatch[] = [
         "Accelerometer",
         "Ambient light sensor"
       ],
-      image: "/src/assets/Watch/series8/Apple-Watch-Series-8-Alternative.jpeg",
+      image: "/assets/Watch/series8/Apple-Watch-Series-8-Alternative.jpeg",
       description: "Series 8 with GPS + Cellular connectivity, perfect for staying connected without your iPhone nearby. Same great features with added independence."
     },
     {
@@ -153,7 +153,7 @@ const appleWatches: AppleWatch[] = [
         "Gyroscope",
         "Ambient light sensor"
       ],
-      image: "/src/assets/Watch/series9/Apple-Watch-Series-9-Alternative.jpeg",
+      image: "/assets/Watch/series9/Apple-Watch-Series-9-Alternative.jpeg",
       description: "Series 9 with GPS + Cellular connectivity, featuring improved display brightness and enhanced sensors. Stay connected and track your health independently."
     },
     {
@@ -182,7 +182,7 @@ const appleWatches: AppleWatch[] = [
         "Depth gauge",
         "Water temperature sensor"
       ],
-      image: "/src/assets/Watch/series10/Apple-Watch-Series-10-Alternative.jpeg",
+      image: "/assets/Watch/series10/Apple-Watch-Series-10-Alternative.jpeg",
       description: "Series 10 with GPS + Cellular connectivity, featuring the biggest display yet and most advanced sensors. Perfect for active users who need constant connectivity."
     },
     {
@@ -211,7 +211,7 @@ const appleWatches: AppleWatch[] = [
         "Depth gauge",
         "Water temperature sensor"
       ],
-      image: "/src/assets/Watch/series10/Apple-Watch-Series-10-Third.jpeg",
+      image: "/assets/Watch/series10/Apple-Watch-Series-10-Third.jpeg",
       description: "Series 10 in the larger 46mm case size, offering the biggest display and best battery life. Ideal for users who prefer larger watches and extended usage."
     }
   ];

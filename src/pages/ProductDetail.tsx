@@ -73,7 +73,7 @@ const ProductDetail: React.FC = () => {
     if (product) {
       return getProductImage(product);
     }
-    return '/src/assets/others/iPhone.jpeg';
+    return '/assets/others/iPhone.jpeg';
   };
 
   if (!product) {

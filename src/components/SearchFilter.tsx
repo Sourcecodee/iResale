@@ -80,17 +80,31 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
                 className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
                 <option>All Models</option>
-                {selectedCategory === 'iPhones' && (
+                {(selectedCategory === 'iPhones' || selectedCategory === 'iphones') && (
                   <>
+                    <option>iPhone 17 Pro Max</option>
+                    <option>iPhone 17 Pro</option>
                     <option>iPhone 17</option>
+                    <option>iPhone 16 Pro Max</option>
+                    <option>iPhone 16 Pro</option>
                     <option>iPhone 16</option>
+                    <option>iPhone 15 Pro Max</option>
+                    <option>iPhone 15 Pro</option>
                     <option>iPhone 15</option>
+                    <option>iPhone 14 Pro Max</option>
+                    <option>iPhone 14 Pro</option>
                     <option>iPhone 14</option>
+                    <option>iPhone 13 Pro Max</option>
+                    <option>iPhone 13 Pro</option>
                     <option>iPhone 13</option>
+                    <option>iPhone 12 Pro Max</option>
+                    <option>iPhone 12 Pro</option>
                     <option>iPhone 12</option>
+                    <option>iPhone 12 mini</option>
+                    <option>iPhone XR</option>
                   </>
                 )}
-                {selectedCategory === 'Apple Watches' && (
+                {(selectedCategory === 'Apple Watches' || selectedCategory === 'apple-watches') && (
                   <>
                     <option>Series 10</option>
                     <option>Series 9</option>
@@ -98,20 +112,24 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
                     <option>SE</option>
                   </>
                 )}
-                {selectedCategory === 'iPads' && (
+                {(selectedCategory === 'iPads' || selectedCategory === 'ipads') && (
                   <>
-                    <option>iPad Pro</option>
-                    <option>iPad Air</option>
-                    <option>iPad</option>
+                    <option>iPad Pro (13‑inch, M4)</option>
+                    <option>iPad Pro (11‑inch, M4)</option>
+                    <option>iPad Air (13‑inch, M3)</option>
+                    <option>iPad Air (11‑inch, M3)</option>
+                    <option>iPad (11th Generation / A16 base iPad)</option>
+                    <option>iPad (10th Generation)</option>
+                    <option>iPad mini (6th / latest)</option>
                   </>
                 )}
-                {selectedCategory === 'MacBooks' && (
+                {(selectedCategory === 'MacBooks' || selectedCategory === 'macbooks') && (
                   <>
                     <option>MacBook Air</option>
                     <option>MacBook Pro</option>
                   </>
                 )}
-                {selectedCategory === 'AirPods' && (
+                {(selectedCategory === 'AirPods' || selectedCategory === 'airpods') && (
                   <>
                     <option>AirPods Pro</option>
                     <option>AirPods 3rd Gen</option>
@@ -119,7 +137,7 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
                   </>
                 )}
               </select>
-            {selectedCategory === 'Apple Watches' ? (
+            {(selectedCategory === 'Apple Watches' || selectedCategory === 'apple-watches') ? (
               <>
                 <select
                   value={selectedConnectivity || 'All Connectivity'}
@@ -147,10 +165,12 @@ const SearchFilter: React.FC<SearchFilterProps> = ({
                 className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
                 <option>All Storage</option>
-                <option>128GB</option>
-                <option>256GB</option>
-                <option>512GB</option>
-                <option>1TB</option>
+                <option>64 GB</option>
+                <option>128 GB</option>
+                <option>256 GB</option>
+                <option>512 GB</option>
+                <option>1 TB</option>
+                <option>2 TB</option>
               </select>
             )}
             <select

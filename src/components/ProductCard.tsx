@@ -33,9 +33,10 @@ export interface Product {
 interface ProductCardProps {
   product: Product;
   isCategoryView?: boolean;
+  currentCategory?: string;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, isCategoryView = false }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, isCategoryView = false, currentCategory }) => {
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-NG', {
       style: 'currency',
@@ -59,7 +60,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isCategoryView = fal
   };
 
   return (
-    <Link to={`/product/${product.id}`} className="block">
+    <Link to={`/product/${product.id}${currentCategory ? `?category=${currentCategory}` : ''}`} className="block">
       <div className={`bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer ${isCategoryView ? 'sm:shadow-md' : ''}`}>
         <div className="relative">
           <div className={`w-full bg-gray-200 flex items-center justify-center overflow-hidden ${isCategoryView ? 'h-48 sm:h-56 md:h-64' : 'h-64'}`}>

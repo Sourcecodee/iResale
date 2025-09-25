@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useProducts } from '../context/ProductContext';
 import { Product } from '../components/ProductCard';
 import { getProductImage } from '../utils/iphoneImageMapper';
@@ -9,9 +9,13 @@ import Footer from '../components/Footer';
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { getProduct } = useProducts();
   const [product, setProduct] = useState<Product | null>(null);
   const [isSpinning, setIsSpinning] = useState(false);
+  
+  // Get the category from URL parameters
+  const category = searchParams.get('category');
 
   useEffect(() => {
     if (id) {
@@ -51,6 +55,16 @@ const ProductDetail: React.FC = () => {
         product.storage
       );
       window.open(whatsappUrl, '_blank');
+    }
+  };
+
+  const handleBackNavigation = () => {
+    if (category) {
+      // Navigate back to the specific category
+      navigate(`/?category=${category}`);
+    } else {
+      // Fallback to browser back or home
+      navigate(-1);
     }
   };
 
@@ -98,7 +112,7 @@ const ProductDetail: React.FC = () => {
             </div>
             <div className="flex items-center space-x-4">
               <button
-                onClick={() => navigate(-1)}
+                onClick={handleBackNavigation}
                 className="text-gray-800 hover:text-black font-medium text-sm sm:text-base"
               >
                 ← Back
@@ -108,7 +122,7 @@ const ProductDetail: React.FC = () => {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-7 lg:py-8 pt-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-7 lg:py-8 pt-28 sm:pt-32 lg:pt-[138px]">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12">
           {/* Product Image Section */}
           <div className="space-y-4 sm:space-y-5 lg:space-y-6">
@@ -320,7 +334,7 @@ const ProductDetail: React.FC = () => {
       </div>
       
       {/* Footer */}
-      <Footer onCategoryClick={() => {}} />
+      <Footer onCategoryClick={(categoryId) => navigate(`/?category=${categoryId}`)} />
     </div>
   );
 };

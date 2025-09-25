@@ -100,11 +100,9 @@ export const generateProductsFromiPhones = (): Product[] => {
   let id = 1;
 
   iphones.forEach((iphone) => {
-    // Create only one product per iPhone model
-    // Use the most common storage option (usually 128GB or 256GB)
-    const storage = iphone.storageOptions.includes('256GB') ? '256GB' : 
-                   iphone.storageOptions.includes('128GB') ? '128GB' : 
-                   iphone.storageOptions[0];
+    // Randomly select one storage option from available options
+    const randomStorageIndex = Math.floor(Math.random() * iphone.storageOptions.length);
+    const storage = iphone.storageOptions[randomStorageIndex];
     
     const condition = generateCondition(iphone.releaseYear);
     const pricing = generatePricing(iphone, storage);
@@ -140,11 +138,9 @@ export const generateProductsFromiPads = (): Product[] => {
   let id = 3000; // Start from 3000 to avoid conflicts
 
   ipads.forEach((ipad) => {
-    // Create only one product per iPad model
-    // Use the most common storage option (usually 128GB or 256GB)
-    const storage = ipad.storageOptions.includes('256GB') ? '256GB' : 
-                   ipad.storageOptions.includes('128GB') ? '128GB' : 
-                   ipad.storageOptions[0];
+    // Randomly select one storage option from available options
+    const randomStorageIndex = Math.floor(Math.random() * ipad.storageOptions.length);
+    const storage = ipad.storageOptions[randomStorageIndex];
     
     const condition = generateCondition(ipad.releaseYear);
     const pricing = generateiPadPricing(ipad, storage);
@@ -355,7 +351,7 @@ export const generateAdditionalProducts = (): Product[] => {
       image: "/src/assets/others/Macbook.jpeg",
       condition: "Excellent",
       discount: 8,
-      storage: "256GB",
+      storage: "256 GB",
       battery: "95%",
       status: "Unlocked",
       currentPrice: 850000,
@@ -369,7 +365,7 @@ export const generateAdditionalProducts = (): Product[] => {
       image: "/src/assets/others/Macbook.jpeg",
       condition: "Very Good",
       discount: 11,
-      storage: "512GB",
+      storage: "512 GB",
       battery: "93%",
       status: "Unlocked",
       currentPrice: 1200000,

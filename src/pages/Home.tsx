@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useProducts } from '../context/ProductContext';
+import { useSearchParams } from 'react-router-dom';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import SearchFilter from '../components/SearchFilter';
@@ -11,11 +12,35 @@ import { categories } from '../data/categories';
 
 const Home: React.FC = () => {
   const { products } = useProducts();
+  const [searchParams] = useSearchParams();
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedModel, setSelectedModel] = useState('All Models');
   const [selectedStorage, setSelectedStorage] = useState('All Storage');
   const [selectedCondition, setSelectedCondition] = useState('All Conditions');
+
+  // Ref for category header section
+  const categoryHeaderRef = useRef<HTMLElement>(null);
+
+  // Function to scroll to category section
+  const scrollToCategorySection = () => {
+    setTimeout(() => {
+      if (categoryHeaderRef.current) {
+        categoryHeaderRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 300);
+  };
+
+  // Handle category from URL parameters
+  useEffect(() => {
+    const categoryFromUrl = searchParams.get('category');
+    if (categoryFromUrl) {
+      setSelectedCategoryId(categoryFromUrl);
+      
+      // Scroll to the category section
+      scrollToCategorySection();
+    }
+  }, [searchParams]);
 
   // Get current category
   const currentCategory = selectedCategoryId ? categories.find(cat => cat.id === selectedCategoryId) : null;
@@ -71,13 +96,7 @@ const Home: React.FC = () => {
     setSelectedCondition('All Conditions');
     
     // Scroll to the category header when category is selected
-    setTimeout(() => {
-      // Target the category header section
-      const categoryHeader = document.querySelector('section.py-6.bg-white.border-b.border-gray-200');
-      if (categoryHeader) {
-        categoryHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 200);
+    scrollToCategorySection();
   };
 
   const handleBackToCategories = () => {
@@ -130,7 +149,7 @@ const Home: React.FC = () => {
         // Products View
         <>
           {/* Category Header */}
-          <section className="py-4 sm:py-5 lg:py-6 bg-white border-b border-gray-200">
+          <section ref={categoryHeaderRef} className="py-4 sm:py-5 lg:py-6 bg-white border-b border-gray-200">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex items-center justify-between">
                 <div className="flex-1">
@@ -161,7 +180,7 @@ const Home: React.FC = () => {
           <SearchFilter
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
-            selectedCategory={currentCategory?.name || 'All Categories'}
+            selectedCategory={selectedCategoryId || 'All Categories'}
             setSelectedCategory={() => {}} // Disabled when in category view
             selectedModel={selectedModel}
             setSelectedModel={setSelectedModel}
@@ -177,7 +196,7 @@ const Home: React.FC = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-5 lg:gap-6">
                 {filteredProducts.map((product) => (
-                  <ProductCard key={product.id} product={product} isCategoryView={true} />
+                  <ProductCard key={product.id} product={product} isCategoryView={true} currentCategory={selectedCategoryId || undefined} />
                 ))}
               </div>
               

@@ -4,9 +4,20 @@ import { useProducts } from '../context/ProductContext';
 import { Product } from '../components/ProductCard';
 import { getProductImage } from '../utils/iphoneImageMapper';
 import { getWhatsAppUrl } from '../config/whatsappConfig';
-import Footer from '../components/Footer';
 
-const ProductDetail: React.FC = () => {
+interface ProductDetailProps {
+  productId?: string;
+  category?: string | null;
+  onBackToCategory?: () => void;
+  onBackToCategories?: () => void;
+}
+
+const ProductDetail: React.FC<ProductDetailProps> = ({ 
+  productId, 
+  category: propCategory, 
+  onBackToCategory, 
+  onBackToCategories 
+}) => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -14,15 +25,16 @@ const ProductDetail: React.FC = () => {
   const [product, setProduct] = useState<Product | null>(null);
   const [isSpinning, setIsSpinning] = useState(false);
   
-  // Get the category from URL parameters
-  const category = searchParams.get('category');
+  // Get the category from props or URL parameters
+  const category = propCategory || searchParams.get('category');
+  const currentProductId = productId || id;
 
   useEffect(() => {
-    if (id) {
-      const productData = getProduct(parseInt(id));
+    if (currentProductId) {
+      const productData = getProduct(parseInt(currentProductId));
       setProduct(productData || null);
     }
-  }, [id, getProduct]);
+  }, [currentProductId, getProduct]);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-NG', {
@@ -59,12 +71,17 @@ const ProductDetail: React.FC = () => {
   };
 
   const handleBackNavigation = () => {
-    if (category) {
-      // Navigate back to the specific category
-      navigate(`/?category=${category}`);
+    if (category && onBackToCategory) {
+      onBackToCategory();
+    } else if (onBackToCategories) {
+      onBackToCategories();
     } else {
-      // Fallback to browser back or home
-      navigate(-1);
+      // Fallback navigation
+      if (category) {
+        navigate(`/?category=${category}`, { replace: true });
+      } else {
+        navigate('/', { replace: true });
+      }
     }
   };
 
@@ -122,7 +139,7 @@ const ProductDetail: React.FC = () => {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-7 lg:py-8 pt-28 sm:pt-32 lg:pt-[138px]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-7 lg:py-8 pt-12 sm:pt-16 lg:pt-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12">
           {/* Product Image Section */}
           <div className="space-y-4 sm:space-y-5 lg:space-y-6">
@@ -332,9 +349,6 @@ const ProductDetail: React.FC = () => {
           </div>
         </div>
       </div>
-      
-      {/* Footer */}
-      <Footer onCategoryClick={(categoryId) => navigate(`/?category=${categoryId}`)} />
     </div>
   );
 };

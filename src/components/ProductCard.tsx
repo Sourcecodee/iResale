@@ -34,9 +34,10 @@ interface ProductCardProps {
   product: Product;
   isCategoryView?: boolean;
   currentCategory?: string;
+  onProductClick?: (productId: string) => void;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, isCategoryView = false, currentCategory }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, isCategoryView = false, currentCategory, onProductClick }) => {
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-NG', {
       style: 'currency',
@@ -59,9 +60,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isCategoryView = fal
     return getProductImage(product);
   };
 
-  return (
-    <Link to={`/product/${product.id}${currentCategory ? `?category=${currentCategory}` : ''}`} className="block">
-      <div className={`bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer ${isCategoryView ? 'sm:shadow-md' : ''}`}>
+  const handleClick = () => {
+    if (onProductClick) {
+      onProductClick(product.id.toString());
+    }
+  };
+
+  const cardContent = (
+    <div className={`bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer ${isCategoryView ? 'sm:shadow-md' : ''}`}>
         <div className="relative">
           <div className={`w-full bg-gray-200 flex items-center justify-center overflow-hidden ${isCategoryView ? 'h-48 sm:h-56 md:h-64' : 'h-64'}`}>
             <img 
@@ -131,6 +137,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isCategoryView = fal
           </div>
         </div>
       </div>
+  );
+
+  return onProductClick ? (
+    <div onClick={handleClick} className="block">
+      {cardContent}
+    </div>
+  ) : (
+    <Link to={`/product/${product.id}${currentCategory ? `?category=${currentCategory}` : ''}`} className="block">
+      {cardContent}
     </Link>
   );
 };

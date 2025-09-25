@@ -3,7 +3,6 @@ import './App.css'
 import { ProductProvider } from './context/ProductContext'
 import Home from './pages/Home'
 import Admin from './pages/Admin'
-import ProductDetail from './pages/ProductDetail'
 
 function App() {
   return (
@@ -13,7 +12,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/admin" element={<Admin />} />
-            <Route path="/product/:id" element={<ProductDetail />} />
           </Routes>
         </div>
       </Router>

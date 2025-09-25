@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useProducts } from '../context/ProductContext';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import SearchFilter from '../components/SearchFilter';
@@ -8,12 +8,15 @@ import ProductCard from '../components/ProductCard';
 import CategorySlider from '../components/CategorySlider';
 import ServicesSection from '../components/ServicesSection';
 import Footer from '../components/Footer';
+import ProductDetail from './ProductDetail';
 import { categories } from '../data/categories';
 
 const Home: React.FC = () => {
   const { products } = useProducts();
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
+  const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedModel, setSelectedModel] = useState('All Models');
   const [selectedStorage, setSelectedStorage] = useState('All Storage');
@@ -31,13 +34,21 @@ const Home: React.FC = () => {
     }, 300);
   };
 
-  // Handle category from URL parameters
+  // Handle category and product from URL parameters
   useEffect(() => {
     const categoryFromUrl = searchParams.get('category');
+    const productFromUrl = searchParams.get('product');
+    
     if (categoryFromUrl) {
       setSelectedCategoryId(categoryFromUrl);
-      
-      // Scroll to the category section
+    }
+    
+    if (productFromUrl) {
+      setSelectedProductId(productFromUrl);
+    }
+    
+    // Scroll to the category section if category is selected but no product
+    if (categoryFromUrl && !productFromUrl) {
       scrollToCategorySection();
     }
   }, [searchParams]);
@@ -89,22 +100,38 @@ const Home: React.FC = () => {
 
   const handleCategoryClick = (categoryId: string) => {
     setSelectedCategoryId(categoryId);
+    setSelectedProductId(null);
     // Reset other filters when selecting a category
     setSearchTerm('');
     setSelectedModel('All Models');
     setSelectedStorage('All Storage');
     setSelectedCondition('All Conditions');
     
+    // Update URL to include the selected category
+    navigate(`/?category=${categoryId}`, { replace: true });
+    
     // Scroll to the category header when category is selected
     scrollToCategorySection();
   };
 
+  const handleProductClick = (productId: string) => {
+    setSelectedProductId(productId);
+    
+    // Update URL to include both category and product
+    const categoryParam = selectedCategoryId ? `category=${selectedCategoryId}&` : '';
+    navigate(`/?${categoryParam}product=${productId}`, { replace: true });
+  };
+
   const handleBackToCategories = () => {
     setSelectedCategoryId(null);
+    setSelectedProductId(null);
     setSearchTerm('');
     setSelectedModel('All Models');
     setSelectedStorage('All Storage');
     setSelectedCondition('All Conditions');
+    
+    // Clear URL parameters by navigating to clean home URL
+    navigate('/', { replace: true });
     
     // Scroll to the top of the page content (after header)
     setTimeout(() => {
@@ -115,17 +142,31 @@ const Home: React.FC = () => {
     }, 100);
   };
 
+  const handleBackToCategory = () => {
+    setSelectedProductId(null);
+    
+    // Navigate back to category view
+    const categoryParam = selectedCategoryId ? `?category=${selectedCategoryId}` : '';
+    navigate(`/${categoryParam}`, { replace: true });
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Header onHomeClick={handleBackToCategories} />
-      <div className="pt-20">
-        <Hero />
-
-
-      {/* Show categories or products based on selection */}
-      {!selectedCategoryId ? (
+      <div className="pt-12">
+        {/* Show categories, products, or product detail based on selection */}
+        {selectedProductId ? (
+          // Product Detail View
+          <ProductDetail 
+            productId={selectedProductId}
+            category={selectedCategoryId}
+            onBackToCategory={handleBackToCategory}
+            onBackToCategories={handleBackToCategories}
+          />
+        ) : !selectedCategoryId ? (
         // Categories View
         <>
+          <Hero />
           <section className="pt-8 sm:pt-12 lg:pt-16 pb-2 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-8 sm:mb-10 lg:mb-12">
@@ -148,6 +189,7 @@ const Home: React.FC = () => {
       ) : (
         // Products View
         <>
+          <Hero />
           {/* Category Header */}
           <section ref={categoryHeaderRef} className="py-4 sm:py-5 lg:py-6 bg-white border-b border-gray-200">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -196,7 +238,13 @@ const Home: React.FC = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-5 lg:gap-6">
                 {filteredProducts.map((product) => (
-                  <ProductCard key={product.id} product={product} isCategoryView={true} currentCategory={selectedCategoryId || undefined} />
+                  <ProductCard 
+                    key={product.id} 
+                    product={product} 
+                    isCategoryView={true} 
+                    currentCategory={selectedCategoryId || undefined}
+                    onProductClick={handleProductClick}
+                  />
                 ))}
               </div>
               

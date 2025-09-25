@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 interface FooterProps {
   onCategoryClick?: (categoryId: string) => void;
